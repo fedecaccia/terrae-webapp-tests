@@ -1,15 +1,40 @@
 import Switch from "./Switch";
-import { useState } from "react";
+import TokenInput from "./TokenInput";
+import { useState, useRef } from "react";
+import {
+  ChevronDownIcon
+} from "@heroicons/react/outline"
 
 function ExchangeWidget() {
   const [isBuying, setBuy] = useState(true);
+  const [fromValue, setFromValue] = useState(0);
+  const [toValue, setToValue] = useState(0);
+  
+  const fromInputRef = useRef(null);
+  const toInputRef = useRef(null);
+  const bnbBalance = 123123.123123;
+  const denarisBalance = 1000;
 
   const onBuy = () => {
     setBuy(true);
+    setFromValue(0);
+    setToValue(0);
   };
   const onSell = () => {
     setBuy(false);
+    setFromValue(0);
+    setToValue(0);
   };
+  const setMaxBNB= () => {
+    isBuying
+    ? setFromValue(bnbBalance)
+    : setToValue(bnbBalance)
+  }
+  const setMaxDENARIS= () => {
+    !isBuying
+    ? setFromValue(denarisBalance)
+    : setToValue(denarisBalance)
+  }
 
   return (
     <div className="flex-grow h-screen 
@@ -18,6 +43,8 @@ function ExchangeWidget() {
         h-2/3 mx-auto max-w-md md:max-w-lg lg:max-w-2xl mt-20
         rounded-3xl bg-gray-dark
         items-center self-center">
+
+          {/* Exchange buy/sell */}
 
           <div className="flex flex-row w-full justify-between border-b-2 border-gray-border">
             
@@ -38,11 +65,43 @@ function ExchangeWidget() {
 
           </div>
 
-          <div>
 
+          <div className="flex flex-col items-center my-5 w-full px-10 text-gray-lightest ">
+
+            {/* First token */}
+
+            <TokenInput 
+              value={fromValue}
+              inputRef={fromInputRef}
+              onChangeValue={setFromValue}
+              maxBalance={isBuying ? bnbBalance : denarisBalance}
+              setMax={isBuying ? setMaxBNB : setMaxDENARIS}
+              symbol={isBuying ? "BNB" : "DENARIS"}
+              iconSource={isBuying ? "/BNB.png" : "/DENARIS.png"}
+              isFrom={true}
+            />
+
+            <div className="flex h-10 w-10 my-5">
+              <ChevronDownIcon />
+            </div>
+
+            {/* Second token */}
+
+            <TokenInput 
+              value={toValue}
+              inputRef={toInputRef}
+              onChangeValue={setToValue}
+              maxBalance={!isBuying ? bnbBalance : denarisBalance}
+              setMax={!isBuying ? setMaxBNB : setMaxDENARIS}
+              symbol={!isBuying ? "BNB" : "DENARIS"}
+              iconSource={!isBuying ? "/BNB.png" : "/DENARIS.png"}
+              isFrom={false}
+            />
+
+
+
+            
           </div>
-          
-          <div></div>
       </div>
     </div>
   )
