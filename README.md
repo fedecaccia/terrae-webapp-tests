@@ -1,0 +1,3 @@
+# Terrae
+
+Nextjs frontend version.
