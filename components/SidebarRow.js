@@ -15,7 +15,7 @@ const SidebarRow = ({ src, Icon, title }) => (
     {Icon && (
       <Icon className="h-8 w-8 text-gray-lightest" />
     )}
-    <p className="hidden sm:inline-flex smallText items-center text-gray-lightest">{title}</p>
+    <p className="hidden sm:inline-flex baseText items-center text-gray-lightest">{title}</p>
   </div>
 );
 
