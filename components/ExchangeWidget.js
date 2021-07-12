@@ -18,7 +18,7 @@ function ExchangeWidget({ bnbBalance, denarisBalance }) {
   const fromInputRef = useRef(null);
   const toInputRef = useRef(null);
 
-  const maxPrecision = 8;
+  const maxPrecision=8;
   const denarisPrice=0.01;
 
   const toHumanFormat = (value, decimals) => {
@@ -32,11 +32,13 @@ function ExchangeWidget({ bnbBalance, denarisBalance }) {
     setBuy(true);
     setFromValue(0);
     setToValue(0);
+    setEnoughFrom(true);
   };
   const onSell = () => {
     setBuy(false);
     setFromValue(0);
     setToValue(0);
+    setEnoughFrom(true);
   };
 
   const getPrecision = (a) => {
@@ -62,7 +64,7 @@ function ExchangeWidget({ bnbBalance, denarisBalance }) {
     : setToValue(value);
 
     isBuying
-    ? setToValue((value*denarisPrice).toFixed(maxPrecision))
+    ? setToValue((value/denarisPrice).toFixed(maxPrecision))
     : setFromValue((value/denarisPrice).toFixed(maxPrecision));
 
     isBuying
@@ -79,11 +81,11 @@ function ExchangeWidget({ bnbBalance, denarisBalance }) {
 
     !isBuying
     ? setToValue((value*denarisPrice).toFixed(maxPrecision))
-    : setFromValue((value/denarisPrice).toFixed(maxPrecision));
+    : setFromValue((value*denarisPrice).toFixed(maxPrecision));
 
     !isBuying
     ? (value>denarisHumanBalance ? setEnoughFrom(false) : setEnoughFrom(true))
-    : (value/denarisPrice>bnbHumanBalance ? setEnoughFrom(false) : setEnoughFrom(true));
+    : (value*denarisPrice>bnbHumanBalance ? setEnoughFrom(false) : setEnoughFrom(true));
   };
 
   const trade = () => {

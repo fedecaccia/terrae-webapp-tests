@@ -5,7 +5,10 @@ import ExchangeWidget from "../components/ExchangeWidget";
 import { useState, useEffect } from "react";
 import { eth } from '../web3/provider';
 import { useWeb3, useDispatchWeb3 } from '../context/Web3';
+import abi from "../web3/abi";
 
+const denarisContractAddress = "0xb1c7bC091BE121af3Bf53a37ef21287D61Dfe697";
+const denarisSymbol = "DENARIS";
 
 const Home = () => {
 
@@ -18,7 +21,6 @@ const Home = () => {
       setExpandedSidebar(true);
     }
   }
-
 
   const userWeb3 = useWeb3()
   const dispatch = useDispatchWeb3()
@@ -39,22 +41,32 @@ const Home = () => {
 
   const askMetamaskConnection = async () => {
     try {
-      await ethereum.request({method: 'eth_requestAccounts'})
-      const addresses = await eth.getAccounts(); // Get user's ETH addresses
-      handleAddress(addresses[0]);
-      const balance = await eth.getBalance(addresses[0]);
-      console.log("balance" )
-      console.log(balance)
-      await handleBalance("bnb", balance);
-
-      console.log(userWeb3)
+      await ethereum.request({method: 'eth_requestAccounts'});
+      console.log(`Chain id:  ${ethereum.chainId}`);
     } catch (err) {
       console.log(err);
       console.error("User denied access to their BNB addresses!")
     }
   }
+  
+  const getWeb3UserInfo = async () => {
+    try{
+      const addresses = await eth.getAccounts(); // Get user's ETH addresses
+      handleAddress(addresses[0]);
+      const bnbBalance = await eth.getBalance(addresses[0]);
+      handleBalance("bnb", bnbBalance);
+      const denarisInst = new eth.Contract(abi, denarisContractAddress)
+      const denarisBalance = await denarisInst.methods.balanceOf(addresses[0]).call();
+      handleBalance("denaris", denarisBalance);
+    } catch(err) {
+      console.log(err);
+    }
+  };
 
-  useEffect(async () => await askMetamaskConnection(), []);  
+  useEffect(async () => {
+    await askMetamaskConnection();
+    await getWeb3UserInfo();
+  }, []);
   
   return (
     <div className="h-screen 
