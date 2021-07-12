@@ -2,13 +2,11 @@ import Image from "next/image";
 
 import {
   ViewBoardsIcon,
+  MenuIcon
 } from "@heroicons/react/solid";
-import {
-  FlagIcon,
-} from "@heroicons/react/outline";
 import AddressHeader from "./AddressHeader";
 
-const Header = () => {
+const Header = ({ address, toogleSidebar, expanded }) => {
 
   const dummyFunction = () => {}
 
@@ -17,8 +15,14 @@ const Header = () => {
       {/* Left */}
       <div className="flex items-center justify-start">
         
-        <div className="flex items-center rounded-full bg-transparent py-2 pr-2">
-          <ViewBoardsIcon className="h-8 w-8 text-gray-lightest cursor-pointer" />
+        <div className="flex items-center rounded-full bg-transparent py-2 pr-2"
+          onClick={toogleSidebar}
+        >
+          {
+            expanded
+            ? <ViewBoardsIcon className="h-8 w-8 text-gray-lightest cursor-pointer" />
+            : <MenuIcon className="h-8 w-8 text-gray-lightest cursor-pointer" />
+          }
         </div>
         
         <Image

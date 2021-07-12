@@ -12,21 +12,23 @@ import {
 } from "@heroicons/react/solid";
 import SidebarRow from "./SidebarRow";
 
-const Sidebar = () => {
+const Sidebar = ({ expanded }) => {
 
   return (
-    <div className="pt-7 pb-2 max-w-[600px] xl:min-w-[300px]
-    h-full mb-5
-    bg-gray-dark border-r-[1px] border-gray-border">
+    <div className={`pt-7 pb-2 max-w-[600px] 
+      ${expanded && "xl:min-w-[300px]"}
+      h-full mb-5
+      bg-gray-dark border-r-[1px] border-gray-border transition duration-300`
+    }>
       
-      <SidebarRow Icon={LibraryIcon} title="Home" />
-      <SidebarRow Icon={SwitchHorizontalIcon} title="Exchange" isActive/>
-      <SidebarRow Icon={PhotographIcon} title="Lands" />
-      <SidebarRow Icon={FlagIcon} title="Army" />
-      <SidebarRow Icon={FireIcon} title="Battle" />
-      <SidebarRow Icon={ScaleIcon} title="Marketplace" />
-      <SidebarRow Icon={BeakerIcon} title="Alchemy" />
-      <SidebarRow Icon={GiftIcon} title="Coffers" />
+      <SidebarRow expanded={expanded} Icon={LibraryIcon} title="Home" />
+      <SidebarRow expanded={expanded} Icon={SwitchHorizontalIcon} title="Exchange" isActive/>
+      <SidebarRow expanded={expanded} Icon={PhotographIcon} title="Lands" />
+      <SidebarRow expanded={expanded} Icon={FlagIcon} title="Army" />
+      <SidebarRow expanded={expanded} Icon={FireIcon} title="Battle" />
+      <SidebarRow expanded={expanded} Icon={ScaleIcon} title="Marketplace" />
+      <SidebarRow expanded={expanded} Icon={BeakerIcon} title="Alchemy" />
+      <SidebarRow expanded={expanded} Icon={GiftIcon} title="Coffers" />
       
     </div>
   );

@@ -2,10 +2,21 @@ import Head from "next/head";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import ExchangeWidget from "../components/ExchangeWidget";
+import { useState } from "react";
 
 const Exchange = () => {
 
-  const userAddress = "0xsdf87sdhf8sd8fhs8fs8df8sdf"
+  const userAddress = "0xsdf87sdhf8sd8fhs8fs8df8sdf";
+
+  const [expandedSidebar, setExpandedSidebar] = useState(true);
+
+  const toogleSidebar = () => {
+    if (expandedSidebar === true) {
+      setExpandedSidebar(false);
+    } else {
+      setExpandedSidebar(true);
+    }
+  }
   
   return (
     <div className="h-screen 
@@ -16,11 +27,11 @@ const Exchange = () => {
         <link rel="icon" href="/TerraeIconBlack.jpg" />
       </Head>
 
-      <Header address={userAddress} />
+      <Header address={userAddress} toogleSidebar={toogleSidebar} expanded={expandedSidebar}/>
 
       <main className="flex flex-row h-screen">
         {/* bg-gray-darkest  */}
-        <Sidebar />
+        <Sidebar expanded={expandedSidebar}/>
         <ExchangeWidget address={userAddress}/>
       </main>
     </div>
