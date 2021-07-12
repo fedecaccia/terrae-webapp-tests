@@ -11,11 +11,19 @@ function TokenInput({
   iconSource
 }) {
   return (
-    <div className="flex flex-row h-[6em] justify-between rounded-lg bg-gray w-full baseText py-2">
-      <div className="flex flex-col justify-evenly text-left px-5">
-        <div>
+    <div className="flex flex-col h-[6em] justify-evenly rounded-lg bg-gray w-full baseText py-2">
+      
+      <div className="flex flex-row justify-between px-5">
+        <div className="text-left">
           <p>{isFrom ? "From" : "To"}</p>
         </div>
+        <div className="text-right">
+          <p>Balance: {maxBalance}</p>
+        </div>
+      </div>
+        
+      <div className="flex flex-row justify-between text-right px-5">
+
         <div>
           <input
             width={25}
@@ -27,11 +35,7 @@ function TokenInput({
             placeholder={0}
           />
         </div>
-      </div>
-      <div className="flex flex-col justify-evenly text-right px-5">
-        <div clas>
-          <p >Balance: {maxBalance}</p>
-        </div>
+
         <div className="flex flex-row justify-end items-center">
           {
           isFrom && 
@@ -49,7 +53,9 @@ function TokenInput({
             alt=""
           />
           <p className="pl-2">{symbol}</p>
-        </div>
+        </div>        
+
+
       </div>
     </div>
   )
