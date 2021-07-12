@@ -15,23 +15,32 @@
   }
 
   .smallText {
-    @apply text-sm font-serif
+    @apply text-sm font-playfair
   }
 
   .baseText {
+    @apply text-base font-playfair
+  }
+  
+  .mediumText {
+    @apply text-2xl font-playfair
+  }
+  
+  .titleText {
+    @apply text-4xl font-playfair 
+  }
+  
+  .addressText {
     @apply text-base font-serif
   }
-
-  .mediumText {
-    @apply text-2xl font-serif
-  }
-
-  .titleText {
-    @apply text-4xl font-serif 
-  }
-
-  .bg-cover {
+  
+  .bg-home {
     background-size: cover;
     background-image: url('/backgrounds/Construccion.jpg')
+  }
+
+  .bg-exchange {
+    background-size: cover;
+    background-image: url('/backgrounds/Marketplace.jpg')
   }
 }

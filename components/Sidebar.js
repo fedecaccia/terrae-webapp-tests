@@ -12,7 +12,7 @@ import {
 } from "@heroicons/react/solid";
 import SidebarRow from "./SidebarRow";
 
-const Sidebar = ({ expanded }) => {
+const Sidebar = ({ expanded, selected }) => {
 
   return (
     <div className={`pt-7 pb-2 max-w-[600px] 
@@ -21,14 +21,14 @@ const Sidebar = ({ expanded }) => {
       bg-gray-dark border-r-[1px] border-gray-border transition duration-300`
     }>
       
-      <SidebarRow expanded={expanded} Icon={LibraryIcon} title="Home" />
-      <SidebarRow expanded={expanded} Icon={SwitchHorizontalIcon} title="Exchange" isActive/>
-      <SidebarRow expanded={expanded} Icon={PhotographIcon} title="Lands" />
-      <SidebarRow expanded={expanded} Icon={FlagIcon} title="Army" />
-      <SidebarRow expanded={expanded} Icon={FireIcon} title="Battle" />
-      <SidebarRow expanded={expanded} Icon={ScaleIcon} title="Marketplace" />
-      <SidebarRow expanded={expanded} Icon={BeakerIcon} title="Alchemy" />
-      <SidebarRow expanded={expanded} Icon={GiftIcon} title="Coffers" />
+      <SidebarRow expanded={expanded} Icon={LibraryIcon} title="Home"  isActive={selected==="HOME"}/>
+      <SidebarRow expanded={expanded} Icon={SwitchHorizontalIcon} title="Exchange" isActive={selected==="EXCHANGE"}/>
+      <SidebarRow expanded={expanded} Icon={PhotographIcon} title="Lands" isActive={selected==="LANDS"}/>
+      <SidebarRow expanded={expanded} Icon={FlagIcon} title="Army" isActive={selected==="ARMY"}/>
+      <SidebarRow expanded={expanded} Icon={FireIcon} title="Battle" isActive={selected==="BATTLE"}/>
+      <SidebarRow expanded={expanded} Icon={ScaleIcon} title="Marketplace" isActive={selected==="MARKETPLACE"}/>
+      <SidebarRow expanded={expanded} Icon={BeakerIcon} title="Alchemy" isActive={selected==="ALCHAMY"}/>
+      <SidebarRow expanded={expanded} Icon={GiftIcon} title="Coffers" isActive={selected==="COFFERS"}/>
       
     </div>
   );

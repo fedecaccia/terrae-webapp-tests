@@ -6,7 +6,7 @@ import {
 } from "@heroicons/react/solid";
 import AddressHeader from "./AddressHeader";
 
-const Header = ({ address, toogleSidebar, expanded }) => {
+const Header = ({ userAddress, toogleSidebar, expanded }) => {
 
   const dummyFunction = () => {}
 
@@ -40,7 +40,7 @@ const Header = ({ address, toogleSidebar, expanded }) => {
 
       {/* Right */}
       <div className="flex items-center sm:space-x-2 justify-end">        
-        <AddressHeader />
+        <AddressHeader userAddress={userAddress}/>
         <Image
           onClick={dummyFunction}
           className="rounded-full cursor-pointer"

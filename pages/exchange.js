@@ -4,7 +4,7 @@ import Sidebar from "../components/Sidebar";
 import ExchangeWidget from "../components/ExchangeWidget";
 import { useState } from "react";
 
-const Home = () => {
+const Exchange = () => {
 
   const userAddress = "0xsdf87sdhf8sd8fhs8fs8df8sdf";
 
@@ -20,7 +20,7 @@ const Home = () => {
   
   return (
     <div className="h-screen 
-    bg-home
+    bg-exchange
     overflow-hidden">
       <Head>
         <title>Terrae</title>
@@ -30,11 +30,11 @@ const Home = () => {
       <Header userAddress={userAddress} toogleSidebar={toogleSidebar} expanded={expandedSidebar}/>
 
       <main className="flex flex-row h-screen">
-        <Sidebar expanded={expandedSidebar} selected={"HOME"}/>
+        <Sidebar expanded={expandedSidebar} selected={"EXCHANGE"}/>
         <ExchangeWidget address={userAddress}/>
       </main>
     </div>
   );
 };
 
-export default Home;
+export default Exchange;
