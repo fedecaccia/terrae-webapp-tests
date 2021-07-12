@@ -1,5 +1,6 @@
 import Switch from "./Switch";
 import TokenInput from "./TokenInput";
+import TerraeButton from "./TerraeButton";
 import { useState, useRef } from "react";
 import {
   ChevronDownIcon
@@ -57,7 +58,9 @@ function ExchangeWidget() {
     ? setToValue((value*denarisPrice).toFixed(maxPrecision))
     : setFromValue((value/denarisPrice).toFixed(maxPrecision));
 
-    isBuying && (value>bnbBalance ? setEnoughFrom(false) : setEnoughFrom(true));
+    isBuying
+    ? (value>bnbBalance ? setEnoughFrom(false) : setEnoughFrom(true))
+    : (value/denarisPrice>denarisBalance ? setEnoughFrom(false) : setEnoughFrom(true))
   };
   const setDENARIS = (value) => {
     value = parseFloat(value);
@@ -71,14 +74,21 @@ function ExchangeWidget() {
     ? setToValue((value*denarisPrice).toFixed(maxPrecision))
     : setFromValue((value/denarisPrice).toFixed(maxPrecision));
 
-    isBuying && (value>denarisBalance ? setEnoughFrom(false) : setEnoughFrom(true));
+    !isBuying
+    ? (value>denarisBalance ? setEnoughFrom(false) : setEnoughFrom(true))
+    : (value/denarisPrice>bnbBalance ? setEnoughFrom(false) : setEnoughFrom(true));
   };
+
+  const trade = () => {
+
+  }
 
   return (
     <div className="flex-grow h-screen 
     pb-44 pt-6 mr-4 xl:mr-40 overflow-y-auto scrollbar-hide">
+      
       <div className="flex flex-col
-        h-2/3 mx-auto max-w-md md:max-w-lg lg:max-w-2xl mt-20
+        mx-auto max-w-md md:max-w-lg lg:max-w-2xl mt-20
         rounded-3xl bg-gray-dark
         items-center self-center">
 
@@ -121,14 +131,19 @@ function ExchangeWidget() {
 
             {
             !enoughFrom
-            && <div className="flex flex-row w-full text-left">
+            ? <div className="flex flex-row w-full text-left">
               <text className="smallText text-red-400">
                 Not enough balance
               </text>
             </div>
+            : <div className="flex flex-row w-full text-left">
+              <text className="smallText text-transparent">
+                dummy text
+              </text>
+            </div>
             }
 
-            <div className="flex h-10 w-10 my-5">
+            <div className="flex h-10 w-10 mb-5 mt-1">
               <ChevronDownIcon />
             </div>
 
@@ -145,9 +160,25 @@ function ExchangeWidget() {
               isFrom={false}
             />
 
+            {/* Price */}
+            <div className="flex my-3 flex-row justify-between w-full text-left">
+              <text className="baseText text-iris">
+                price
+              </text>
+              <text className="baseText text-gray-lightest">
+                {denarisPrice} BNB per DENARIS
+              </text>
+            </div>
 
+            {/* Action button */}
+            <TerraeButton
+              extraClass="flex flex-row w-full"
+              isPrimary
+              text={isBuying ? "BUY" : "SELL"}
+              enabled={enoughFrom ? true : false}
+              onClick={trade}
+            />
 
-            
           </div>
       </div>
     </div>
