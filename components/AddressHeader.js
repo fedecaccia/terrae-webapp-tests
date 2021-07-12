@@ -21,7 +21,9 @@ function AddressHeader() {
       bg-gray hover:bg-gray-light cursor-pointer text-gray-lightest text-center justify-center"
       onClick={userWeb3.address
                 ? () => askMetamaskDisconnection(dispatch)
-                : () => {askMetamaskConnection({ userWeb3, dispatch }); updateWeb3UserInfo(dispatch)}
+                : () => {
+                  let connected = askMetamaskConnection({ userWeb3, dispatch }); if(connected) updateWeb3UserInfo(dispatch)
+                }
               }
       >
       <p className="addressText"> {userWeb3.address ? reduceAddress(userWeb3.address) : "Connect"}</p>

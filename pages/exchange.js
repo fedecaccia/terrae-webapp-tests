@@ -2,14 +2,15 @@ import Head from "next/head";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import ExchangeWidget from "../components/ExchangeWidget";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import askMetamaskConnection from "../web3/connection";
+import updateWeb3UserInfo from "../web3/balances";
 import { useWeb3, useDispatchWeb3 } from '../context/Web3';
 
 const Exchange = () => {
-
-  const userWeb3 = useWeb3();
-
   const [expandedSidebar, setExpandedSidebar] = useState(true);
+  const userWeb3 = useWeb3();
+  const dispatch = useDispatchWeb3();
 
   const toogleSidebar = () => {
     if (expandedSidebar === true) {
@@ -18,6 +19,11 @@ const Exchange = () => {
       setExpandedSidebar(true);
     }
   }
+
+  useEffect(async () => {
+    let connected = await askMetamaskConnection({ userWeb3, dispatch });
+    if (connected) await updateWeb3UserInfo( dispatch );
+  }, []);
   
   return (
     <div className="h-screen 

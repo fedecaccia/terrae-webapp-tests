@@ -21,8 +21,8 @@ const Home = () => {
   }
 
   useEffect(async () => {
-    await askMetamaskConnection({ userWeb3, dispatch });
-    await updateWeb3UserInfo( dispatch );
+    let connected = await askMetamaskConnection({ userWeb3, dispatch });
+    if (connected) await updateWeb3UserInfo( dispatch );
   }, []);
   
   return (
