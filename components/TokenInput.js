@@ -11,13 +11,14 @@ function TokenInput({
   iconSource
 }) {
   return (
-    <div className="flex flex-row h-[8em] justify-between rounded-lg bg-gray w-full baseText py-2">
+    <div className="flex flex-row h-[7em] justify-between rounded-lg bg-gray w-full baseText py-2">
       <div className="flex flex-col justify-evenly text-left px-5">
         <div>
           <text>{isFrom ? "From" : "To"}</text>
         </div>
         <div>
           <input
+            width={25}
             ref={inputRef}
             type="number"
             value={value}
@@ -31,16 +32,19 @@ function TokenInput({
         <div clas>
           <text >Balance: {maxBalance}</text>
         </div>
-        <div className="flex flex-row justify-end">
+        <div className="flex flex-row justify-end items-center">
+          {
+          isFrom && 
           <text className="text-iris-light pr-2 cursor-pointer"
-            onClick={setMax}>MAX
+            onClick={setMax}>{"MAX"}
           </text>
+          }
 
           <Image
             className="px-2"
             src={iconSource}
-            width={20}
-            height={20}
+            width={25}
+            height={25}
             layout="fixed"
             alt=""
           />

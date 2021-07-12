@@ -13,7 +13,7 @@ const Header = () => {
   const dummyFunction = () => {}
 
   return (
-    <div className="sticky top-0 z-50 pt-2 pb-2 bg-gray-dark border-b-[1px] border-gray-border flex flex-row pd-2 lg:px-5 shadow-md justify-between">
+    <div className="sticky top-0 z-50 pt-2 pb-2 px-5 bg-gray-dark border-b-[1px] border-gray-border flex flex-row pd-2 lg:px-5 shadow-md justify-between">
       {/* Left */}
       <div className="flex items-center justify-start">
         

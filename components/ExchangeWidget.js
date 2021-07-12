@@ -9,11 +9,16 @@ function ExchangeWidget() {
   const [isBuying, setBuy] = useState(true);
   const [fromValue, setFromValue] = useState(0);
   const [toValue, setToValue] = useState(0);
+  const [enoughFrom, setEnoughFrom] = useState(true);
   
   const fromInputRef = useRef(null);
   const toInputRef = useRef(null);
   const bnbBalance = 123123.123123;
   const denarisBalance = 1000;
+
+  const maxPrecision = 8;
+
+  const denarisPrice=0.01;
 
   const onBuy = () => {
     setBuy(true);
@@ -25,16 +30,49 @@ function ExchangeWidget() {
     setFromValue(0);
     setToValue(0);
   };
+
+  const precision = (a) => {
+    if (!isFinite(a)) return 0;
+    var e = 1, p = 0;
+    while (Math.round(a * e) / e !== a) { e *= 10; p++; }
+    return p;
+  }
+
   const setMaxBNB= () => {
-    isBuying
-    ? setFromValue(bnbBalance)
-    : setToValue(bnbBalance)
+    setBNB(bnbBalance);
   }
   const setMaxDENARIS= () => {
-    !isBuying
-    ? setFromValue(denarisBalance)
-    : setToValue(denarisBalance)
+    setDENARIS(denarisBalance);
   }
+
+  const setBNB = (value) => {
+    value = parseFloat(value);
+    precision(value) > maxPrecision && (value = value.toFixed(maxPrecision));
+
+    isBuying
+    ? setFromValue(value)
+    : setToValue(value);
+
+    isBuying
+    ? setToValue((value*denarisPrice).toFixed(maxPrecision))
+    : setFromValue((value/denarisPrice).toFixed(maxPrecision));
+
+    isBuying && (value>bnbBalance ? setEnoughFrom(false) : setEnoughFrom(true));
+  };
+  const setDENARIS = (value) => {
+    value = parseFloat(value);
+    precision(value) > maxPrecision && (value = value.toFixed(maxPrecision));
+
+    !isBuying
+    ? setFromValue(value)
+    : setToValue(value);
+
+    !isBuying
+    ? setToValue((value*denarisPrice).toFixed(maxPrecision))
+    : setFromValue((value/denarisPrice).toFixed(maxPrecision));
+
+    isBuying && (value>denarisBalance ? setEnoughFrom(false) : setEnoughFrom(true));
+  };
 
   return (
     <div className="flex-grow h-screen 
@@ -73,13 +111,22 @@ function ExchangeWidget() {
             <TokenInput 
               value={fromValue}
               inputRef={fromInputRef}
-              onChangeValue={setFromValue}
+              onChangeValue={isBuying ? setBNB : setDENARIS}
               maxBalance={isBuying ? bnbBalance : denarisBalance}
               setMax={isBuying ? setMaxBNB : setMaxDENARIS}
               symbol={isBuying ? "BNB" : "DENARIS"}
               iconSource={isBuying ? "/BNB.png" : "/DENARIS.png"}
               isFrom={true}
             />
+
+            {
+            !enoughFrom
+            && <div className="flex flex-row w-full text-left">
+              <text className="smallText text-red-400">
+                Not enough balance
+              </text>
+            </div>
+            }
 
             <div className="flex h-10 w-10 my-5">
               <ChevronDownIcon />
@@ -90,7 +137,7 @@ function ExchangeWidget() {
             <TokenInput 
               value={toValue}
               inputRef={toInputRef}
-              onChangeValue={setToValue}
+              onChangeValue={!isBuying ? setBNB : setDENARIS}
               maxBalance={!isBuying ? bnbBalance : denarisBalance}
               setMax={!isBuying ? setMaxBNB : setMaxDENARIS}
               symbol={!isBuying ? "BNB" : "DENARIS"}
