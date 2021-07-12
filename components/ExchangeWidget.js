@@ -84,11 +84,12 @@ function ExchangeWidget({ bnbBalance }) {
 
   return (
     <div className="flex-grow h-screen 
-    pb-44 pt-6 mr-4 xl:mr-40 overflow-y-auto scrollbar-hide">
+    md:pb-44 pt-6 md:mr-4 xl:mr-40 overflow-y-auto scrollbar-hide">
       
       <div className="flex flex-col
-        mx-auto max-w-md md:max-w-lg mt-20 pt-7 pb-6
-        rounded-3xl 
+        w-full h-full pt-7 pb-6
+        md:mx-auto md:max-w-lg md:mt-20 md:h-auto
+        md:rounded-3xl 
         bg-gray-dark
         items-center self-center">
 
