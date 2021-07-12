@@ -2,13 +2,14 @@ import Head from "next/head";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import ExchangeWidget from "../components/ExchangeWidget";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { eth } from '../web3/provider' 
+
 
 const Home = () => {
 
-  const userAddress = "0xsdf87sdhf8sd8fhs8fs8df8sdf";
-
   const [expandedSidebar, setExpandedSidebar] = useState(true);
+  const [userAddress, setUserAddress] = useState("");
 
   const toogleSidebar = () => {
     if (expandedSidebar === true) {
@@ -17,6 +18,20 @@ const Home = () => {
       setExpandedSidebar(true);
     }
   }
+
+
+  const askMetamaskConnection = async () => {
+    try {
+      await ethereum.enable() // Prompt user to let our DApp access their addresses
+      const addresses = await eth.getAccounts(); // Get user's ETH addresses
+      setUserAddress(addresses[0]);
+    } catch (err) {
+      console.error("User denied access to their ETH addresses!")
+    }
+  }
+
+  useEffect(async () => await askMetamaskConnection(), [])
+  
   
   return (
     <div className="h-screen 
