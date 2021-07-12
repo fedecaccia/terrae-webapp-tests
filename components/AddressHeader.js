@@ -9,9 +9,9 @@ function AddressHeader({ userAddress }) {
   }
 
   return (
-    <div className="rounded-full h-8 w-25 border-0 pl-5 pr-5
-      bg-gray hover:bg-gray-light cursor-pointer text-gray-lightest ">
-      <text className="addressText align-middle"> {userAddress ? reduceAddress(userAddress) : "Connect"}</text>
+    <div className="flex flex-col rounded-full h-8 w-25 border-0 pl-5 pr-5
+      bg-gray hover:bg-gray-light cursor-pointer text-gray-lightest text-center justify-center">
+      <p className="addressText"> {userAddress ? reduceAddress(userAddress) : "Connect"}</p>
     </div>
   )
 }

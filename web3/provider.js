@@ -9,4 +9,6 @@ const provider = () => {
   }
 }
 
-export const eth = new Web3(provider()).eth;
+const userProvider = new Web3(provider());
+
+export const eth = userProvider.eth;

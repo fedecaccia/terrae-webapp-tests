@@ -14,7 +14,7 @@ function TokenInput({
     <div className="flex flex-row h-[6em] justify-between rounded-lg bg-gray w-full baseText py-2">
       <div className="flex flex-col justify-evenly text-left px-5">
         <div>
-          <text>{isFrom ? "From" : "To"}</text>
+          <p>{isFrom ? "From" : "To"}</p>
         </div>
         <div>
           <input
@@ -30,14 +30,14 @@ function TokenInput({
       </div>
       <div className="flex flex-col justify-evenly text-right px-5">
         <div clas>
-          <text >Balance: {maxBalance}</text>
+          <p >Balance: {maxBalance}</p>
         </div>
         <div className="flex flex-row justify-end items-center">
           {
           isFrom && 
-          <text className="text-iris-light pr-2 cursor-pointer"
+          <p className="text-iris-light pr-2 cursor-pointer"
             onClick={setMax}>{"MAX"}
-          </text>
+          </p>
           }
 
           <Image
@@ -48,7 +48,7 @@ function TokenInput({
             layout="fixed"
             alt=""
           />
-          <text className="pl-2">{symbol}</text>
+          <p className="pl-2">{symbol}</p>
         </div>
       </div>
     </div>

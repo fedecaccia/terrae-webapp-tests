@@ -10,6 +10,7 @@ const Home = () => {
 
   const [expandedSidebar, setExpandedSidebar] = useState(true);
   const [userAddress, setUserAddress] = useState("");
+  const [userBNBBalance, setUserBNBBalance] = useState(0);
 
   const toogleSidebar = () => {
     if (expandedSidebar === true) {
@@ -22,10 +23,13 @@ const Home = () => {
 
   const askMetamaskConnection = async () => {
     try {
-      await ethereum.enable() // Prompt user to let our DApp access their addresses
+      await ethereum.request({method: 'eth_requestAccounts'})
       const addresses = await eth.getAccounts(); // Get user's ETH addresses
-      setUserAddress(addresses[0]);
+      setUserAddress(userAddress);
+      const balance = await eth.getBalance(addresses[0]);
+      setUserBNBBalance(balance);
     } catch (err) {
+      console.log(err);
       console.error("User denied access to their ETH addresses!")
     }
   }

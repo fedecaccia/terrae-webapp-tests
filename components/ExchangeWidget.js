@@ -133,14 +133,14 @@ function ExchangeWidget() {
             {
             !enoughFrom
             ? <div className="flex flex-row w-full text-left">
-              <text className="smallText text-red-400">
+              <p className="smallText text-red-400">
                 Not enough balance
-              </text>
+              </p>
             </div>
             : <div className="flex flex-row w-full text-left">
-              <text className="smallText text-transparent">
+              <p className="smallText text-transparent">
                 dummy text
-              </text>
+              </p>
             </div>
             }
 
@@ -163,12 +163,12 @@ function ExchangeWidget() {
 
             {/* Price */}
             <div className="flex my-3 flex-row justify-between w-full text-left">
-              <text className="baseText text-iris">
+              <p className="baseText text-iris">
                 price
-              </text>
-              <text className="baseText text-gray-lightest">
+              </p>
+              <p className="baseText text-gray-lightest">
                 {denarisPrice} BNB per DENARIS
-              </text>
+              </p>
             </div>
 
             {/* Action button */}
