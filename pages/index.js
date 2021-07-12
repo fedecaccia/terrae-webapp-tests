@@ -25,9 +25,9 @@ const Home = () => {
     try {
       await ethereum.request({method: 'eth_requestAccounts'})
       const addresses = await eth.getAccounts(); // Get user's ETH addresses
-      setUserAddress(userAddress);
+      setUserAddress(addresses[0]);
       const balance = await eth.getBalance(addresses[0]);
-      setUserBNBBalance(balance);
+      setUserBNBBalance((balance/(10**18)).toFixed(8));
     } catch (err) {
       console.log(err);
       console.error("User denied access to their ETH addresses!")
@@ -50,7 +50,7 @@ const Home = () => {
 
       <main className="flex flex-row h-screen">
         <Sidebar expanded={expandedSidebar} selected={"HOME"}/>
-        <ExchangeWidget address={userAddress}/>
+        <ExchangeWidget address={userAddress} bnbBalance={userBNBBalance}/>
       </main>
     </div>
   );

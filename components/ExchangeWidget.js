@@ -6,7 +6,7 @@ import {
   ChevronDownIcon
 } from "@heroicons/react/outline"
 
-function ExchangeWidget() {
+function ExchangeWidget({ bnbBalance }) {
   const [isBuying, setBuy] = useState(true);
   const [fromValue, setFromValue] = useState(0);
   const [toValue, setToValue] = useState(0);
@@ -14,7 +14,6 @@ function ExchangeWidget() {
   
   const fromInputRef = useRef(null);
   const toInputRef = useRef(null);
-  const bnbBalance = 123123.123123;
   const denarisBalance = 1000;
 
   const maxPrecision = 8;
