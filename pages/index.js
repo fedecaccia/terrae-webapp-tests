@@ -30,16 +30,9 @@ const Home = () => {
     });
   }
 
-  const handleBnbBalance= (balance) => {
+  const handleBalance= (token, balance) => {
     dispatch({
-      type: 'UPDATE_BNB_BALANCE',
-      payload: balance
-    });
-  }
-
-  const handleTokenBalance= (token, balance) => {
-    dispatch({
-      type: 'UPDATE_TOKEN_BALANCE',
+      type: 'UPDATE_BALANCE',
       payload: { token, balance }
     });
   }
@@ -50,10 +43,14 @@ const Home = () => {
       const addresses = await eth.getAccounts(); // Get user's ETH addresses
       handleAddress(addresses[0]);
       const balance = await eth.getBalance(addresses[0]);
-      handleBnbBalance(balance);
+      console.log("balance" )
+      console.log(balance)
+      await handleBalance("bnb", balance);
+
+      console.log(userWeb3)
     } catch (err) {
       console.log(err);
-      console.error("User denied access to their ETH addresses!")
+      console.error("User denied access to their BNB addresses!")
     }
   }
 
@@ -72,7 +69,7 @@ const Home = () => {
 
       <main className="flex flex-row h-screen">
         <Sidebar expanded={expandedSidebar} selected={"HOME"}/>
-        <ExchangeWidget address={userWeb3.address} bnbBalance={userWeb3.bnbBalance}/>
+        <ExchangeWidget address={userWeb3.address} bnbBalance={userWeb3.balances.bnb} denarisBalance={userWeb3.balances.denaris} />
       </main>
     </div>
   );

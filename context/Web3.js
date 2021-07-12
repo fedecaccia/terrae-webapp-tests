@@ -7,11 +7,14 @@ const reducer = (state, action) => {
   switch (action.type) {
     case 'UPDATE_ADDRESS':
       return {...state, address: action.payload}
-    case 'UPDATE_BNB_BALANCE':
-      return {...state, bnbBalance: action.payload}
-    case 'UPDATE_TOKEN_BALANCE':
-      let response = {...state};
-      response.tokensBalance[action.payload.token] = action.payload.value;
+    case 'UPDATE_BALANCE':
+      let response = {
+        address: state.address,
+        balances: {
+          ...state.balances,
+        }
+      };
+      response.balances[action.payload.token] = action.payload.balance;
       return response;
     default:
       throw new Error(`Unknown action: ${action.type}`)
@@ -21,8 +24,8 @@ const reducer = (state, action) => {
 export const Web3Provider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, {
     address: "",
-    bnbBalance: 0,
-    tokensBalance: {
+    balances: {
+      bnb: 0,
       denaris: 0
     }
   });

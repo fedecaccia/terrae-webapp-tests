@@ -32,7 +32,7 @@ const Exchange = () => {
 
       <main className="flex flex-row h-screen">
         <Sidebar expanded={expandedSidebar} selected={"EXCHANGE"}/>
-        <ExchangeWidget address={userWeb3.address}/>
+        <ExchangeWidget address={userWeb3.address} bnbBalance={userWeb3.balances.bnb} denarisBalance={userWeb3.balances.denaris} />
       </main>
     </div>
   );

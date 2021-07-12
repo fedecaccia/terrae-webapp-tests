@@ -4,9 +4,12 @@ import TerraeButton from "./TerraeButton";
 import { useState, useRef } from "react";
 import {
   ChevronDownIcon
-} from "@heroicons/react/outline"
+} from "@heroicons/react/outline";
 
-function ExchangeWidget({ bnbBalance }) {
+const BNB_DECIMALS = 18;
+const DENARIS_DECIMALS = 18;
+
+function ExchangeWidget({ bnbBalance, denarisBalance }) {
   const [isBuying, setBuy] = useState(true);
   const [fromValue, setFromValue] = useState(0);
   const [toValue, setToValue] = useState(0);
@@ -14,11 +17,16 @@ function ExchangeWidget({ bnbBalance }) {
   
   const fromInputRef = useRef(null);
   const toInputRef = useRef(null);
-  const denarisBalance = 1000;
 
   const maxPrecision = 8;
-
   const denarisPrice=0.01;
+
+  const toHumanFormat = (value, decimals) => {
+    return (value/(10**decimals)).toFixed(maxPrecision);
+  }
+
+  const bnbHumanBalance = toHumanFormat(bnbBalance, BNB_DECIMALS);
+  const denarisHumanBalance = toHumanFormat(denarisBalance, DENARIS_DECIMALS);
 
   const onBuy = () => {
     setBuy(true);
@@ -31,7 +39,7 @@ function ExchangeWidget({ bnbBalance }) {
     setToValue(0);
   };
 
-  const precision = (a) => {
+  const getPrecision = (a) => {
     if (!isFinite(a)) return 0;
     var e = 1, p = 0;
     while (Math.round(a * e) / e !== a) { e *= 10; p++; }
@@ -39,15 +47,15 @@ function ExchangeWidget({ bnbBalance }) {
   }
 
   const setMaxBNB= () => {
-    setBNB(bnbBalance);
+    setBNB(bnbHumanBalance);
   }
   const setMaxDENARIS= () => {
-    setDENARIS(denarisBalance);
+    setDENARIS(denarisHumanBalance);
   }
 
   const setBNB = (value) => {
     value = parseFloat(value);
-    precision(value) > maxPrecision && (value = value.toFixed(maxPrecision));
+    getPrecision(value) > maxPrecision && (value = value.toFixed(maxPrecision));
 
     isBuying
     ? setFromValue(value)
@@ -58,12 +66,12 @@ function ExchangeWidget({ bnbBalance }) {
     : setFromValue((value/denarisPrice).toFixed(maxPrecision));
 
     isBuying
-    ? (value>bnbBalance ? setEnoughFrom(false) : setEnoughFrom(true))
-    : (value/denarisPrice>denarisBalance ? setEnoughFrom(false) : setEnoughFrom(true))
+    ? (value>bnbHumanBalance ? setEnoughFrom(false) : setEnoughFrom(true))
+    : (value/denarisPrice>denarisHumanBalance ? setEnoughFrom(false) : setEnoughFrom(true))
   };
   const setDENARIS = (value) => {
     value = parseFloat(value);
-    precision(value) > maxPrecision && (value = value.toFixed(maxPrecision));
+    getPrecision(value) > maxPrecision && (value = value.toFixed(maxPrecision));
 
     !isBuying
     ? setFromValue(value)
@@ -74,8 +82,8 @@ function ExchangeWidget({ bnbBalance }) {
     : setFromValue((value/denarisPrice).toFixed(maxPrecision));
 
     !isBuying
-    ? (value>denarisBalance ? setEnoughFrom(false) : setEnoughFrom(true))
-    : (value/denarisPrice>bnbBalance ? setEnoughFrom(false) : setEnoughFrom(true));
+    ? (value>denarisHumanBalance ? setEnoughFrom(false) : setEnoughFrom(true))
+    : (value/denarisPrice>bnbHumanBalance ? setEnoughFrom(false) : setEnoughFrom(true));
   };
 
   const trade = () => {
@@ -123,7 +131,7 @@ function ExchangeWidget({ bnbBalance }) {
               value={fromValue}
               inputRef={fromInputRef}
               onChangeValue={isBuying ? setBNB : setDENARIS}
-              maxBalance={isBuying ? bnbBalance : denarisBalance}
+              maxBalance={isBuying ? bnbHumanBalance : denarisHumanBalance}
               setMax={isBuying ? setMaxBNB : setMaxDENARIS}
               symbol={isBuying ? "BNB" : "DENARIS"}
               iconSource={isBuying ? "/BNB.png" : "/DENARIS.png"}
@@ -154,7 +162,7 @@ function ExchangeWidget({ bnbBalance }) {
               value={toValue}
               inputRef={toInputRef}
               onChangeValue={!isBuying ? setBNB : setDENARIS}
-              maxBalance={!isBuying ? bnbBalance : denarisBalance}
+              maxBalance={!isBuying ? bnbHumanBalance : denarisHumanBalance}
               setMax={!isBuying ? setMaxBNB : setMaxDENARIS}
               symbol={!isBuying ? "BNB" : "DENARIS"}
               iconSource={!isBuying ? "/BNB.png" : "/DENARIS.png"}
