@@ -8,7 +8,9 @@ const Exchange = () => {
   const userAddress = "0xsdf87sdhf8sd8fhs8fs8df8sdf"
   
   return (
-    <div className="h-screen bg-gray-darkest overflow-hidden">
+    <div className="h-screen 
+    bg-cover
+    overflow-hidden">
       <Head>
         <title>Terrae</title>
         <link rel="icon" href="/TerraeIconBlack.jpg" />
@@ -17,6 +19,7 @@ const Exchange = () => {
       <Header address={userAddress} />
 
       <main className="flex flex-row h-screen">
+        {/* bg-gray-darkest  */}
         <Sidebar />
         <ExchangeWidget address={userAddress}/>
       </main>

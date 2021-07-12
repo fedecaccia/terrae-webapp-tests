@@ -29,4 +29,9 @@
   .titleText {
     @apply text-4xl font-serif 
   }
+
+  .bg-cover {
+    background-size: cover;
+    background-image: url('/backgrounds/Construccion.jpg')
+  }
 }

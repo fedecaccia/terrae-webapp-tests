@@ -89,7 +89,8 @@ function ExchangeWidget() {
       
       <div className="flex flex-col
         mx-auto max-w-md md:max-w-lg lg:max-w-2xl mt-20 pt-7 pb-6
-        rounded-3xl bg-gray-dark
+        rounded-3xl 
+        bg-gray-dark
         items-center self-center">
 
           {/* Exchange buy/sell */}
