@@ -88,7 +88,7 @@ function ExchangeWidget() {
     pb-44 pt-6 mr-4 xl:mr-40 overflow-y-auto scrollbar-hide">
       
       <div className="flex flex-col
-        mx-auto max-w-md md:max-w-lg lg:max-w-2xl mt-20 pt-7 pb-6
+        mx-auto max-w-md md:max-w-lg mt-20 pt-7 pb-6
         rounded-3xl 
         bg-gray-dark
         items-center self-center">

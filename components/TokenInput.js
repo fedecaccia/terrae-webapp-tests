@@ -11,7 +11,7 @@ function TokenInput({
   iconSource
 }) {
   return (
-    <div className="flex flex-row h-[7em] justify-between rounded-lg bg-gray w-full baseText py-2">
+    <div className="flex flex-row h-[6em] justify-between rounded-lg bg-gray w-full baseText py-2">
       <div className="flex flex-col justify-evenly text-left px-5">
         <div>
           <text>{isFrom ? "From" : "To"}</text>
