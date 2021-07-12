@@ -20,7 +20,7 @@ const Sidebar = () => {
     bg-gray-dark border-r-[1px] border-gray-border">
       
       <SidebarRow Icon={LibraryIcon} title="Home" />
-      <SidebarRow Icon={SwitchHorizontalIcon} title="Exchange" />
+      <SidebarRow Icon={SwitchHorizontalIcon} title="Exchange" isActive/>
       <SidebarRow Icon={PhotographIcon} title="Lands" />
       <SidebarRow Icon={FlagIcon} title="Army" />
       <SidebarRow Icon={FireIcon} title="Battle" />

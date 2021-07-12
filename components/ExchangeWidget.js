@@ -173,10 +173,10 @@ function ExchangeWidget() {
 
             {/* Action button */}
             <TerraeButton
-              extraClass="flex flex-row w-full mt-2"
+              extraClass={`flex flex-row w-full mt-2 ${enoughFrom && fromValue>0 && "hover:scale-105"}`}
               isPrimary
               text={isBuying ? "BUY" : "SELL"}
-              enabled={enoughFrom ? true : false}
+              enabled={enoughFrom && fromValue>0 ? true : false}
               onClick={trade}
             />
 
