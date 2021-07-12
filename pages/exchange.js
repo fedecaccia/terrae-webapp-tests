@@ -3,10 +3,11 @@ import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
 import ExchangeWidget from "../components/ExchangeWidget";
 import { useState } from "react";
+import { useWeb3, useDispatchWeb3 } from '../context/Web3';
 
 const Exchange = () => {
 
-  const userAddress = "0xsdf87sdhf8sd8fhs8fs8df8sdf";
+  const userWeb3 = useWeb3();
 
   const [expandedSidebar, setExpandedSidebar] = useState(true);
 
@@ -27,11 +28,11 @@ const Exchange = () => {
         <link rel="icon" href="/TerraeIconBlack.jpg" />
       </Head>
 
-      <Header userAddress={userAddress} toogleSidebar={toogleSidebar} expanded={expandedSidebar}/>
+      <Header userAddress={userWeb3.address} toogleSidebar={toogleSidebar} expanded={expandedSidebar}/>
 
       <main className="flex flex-row h-screen">
         <Sidebar expanded={expandedSidebar} selected={"EXCHANGE"}/>
-        <ExchangeWidget address={userAddress}/>
+        <ExchangeWidget address={userWeb3.address}/>
       </main>
     </div>
   );
