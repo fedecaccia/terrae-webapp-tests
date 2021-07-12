@@ -88,7 +88,7 @@ function ExchangeWidget() {
     pb-44 pt-6 mr-4 xl:mr-40 overflow-y-auto scrollbar-hide">
       
       <div className="flex flex-col
-        mx-auto max-w-md md:max-w-lg lg:max-w-2xl mt-20
+        mx-auto max-w-md md:max-w-lg lg:max-w-2xl mt-20 pt-7 pb-6
         rounded-3xl bg-gray-dark
         items-center self-center">
 
@@ -96,7 +96,7 @@ function ExchangeWidget() {
 
           <div className="flex flex-row w-full justify-between border-b-2 border-gray-border">
             
-            <div className="flex flex-col text-left pl-10 pt-5 pb-5">
+            <div className="flex flex-col text-left pl-10 pb-5">
               <p className="mediumText text-gray-lightest">Exchange</p>
               <p className="baseText text-gray-lightest">Buy/sell Denaris in an instant</p>
             </div>
@@ -172,7 +172,7 @@ function ExchangeWidget() {
 
             {/* Action button */}
             <TerraeButton
-              extraClass="flex flex-row w-full"
+              extraClass="flex flex-row w-full mt-2"
               isPrimary
               text={isBuying ? "BUY" : "SELL"}
               enabled={enoughFrom ? true : false}
