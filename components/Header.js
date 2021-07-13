@@ -51,8 +51,8 @@ const Header = () => {
           onClick={dummyFunction}
           className="rounded-full cursor-pointer"
           src={"/AvatarMarcoMadera01.png"}
-          width="40"
-          height="40"
+          width="50"
+          height="50"
           layout="fixed"
           alt=""
         />                
