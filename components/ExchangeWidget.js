@@ -5,15 +5,20 @@ import { useState, useRef } from "react";
 import {
   ChevronDownIcon
 } from "@heroicons/react/outline";
+import { useWeb3, useDispatchWeb3 } from '../context/Web3';
 
 const BNB_DECIMALS = 18;
 const DENARIS_DECIMALS = 18;
 
-function ExchangeWidget({ bnbBalance, denarisBalance }) {
+const ExchangeWidget = () => {
   const [isBuying, setBuy] = useState(true);
   const [fromValue, setFromValue] = useState(0);
   const [toValue, setToValue] = useState(0);
   const [enoughFrom, setEnoughFrom] = useState(true);
+
+  const userWeb3 = useWeb3();
+  const bnbBalance = userWeb3.balances.bnb;
+  const denarisBalance = userWeb3.balances.denaris;
   
   const fromInputRef = useRef(null);
   const toInputRef = useRef(null);

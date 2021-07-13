@@ -5,8 +5,11 @@ import {
   MenuIcon
 } from "@heroicons/react/solid";
 import AddressHeader from "./AddressHeader";
+import { useSidebar, useDispatchSidebar } from '../context/Sidebar';
 
-const Header = ({ toogleSidebar, expanded }) => {
+const Header = () => {
+  const state = useSidebar();
+  const dispatch = useDispatchSidebar();
 
   const dummyFunction = () => {}
 
@@ -16,10 +19,13 @@ const Header = ({ toogleSidebar, expanded }) => {
       <div className="flex items-center justify-start">
         
         <div className="flex items-center rounded-full bg-transparent py-2 pr-2"
-          onClick={toogleSidebar}
+          onClick={() => dispatch({
+            type:"TOOGLE_SIDEBAR",
+            payload: null
+          })}
         >
           {
-            expanded
+            state.expanded
             ? <ViewBoardsIcon className="h-8 w-8 text-gray-lightest cursor-pointer" />
             : <MenuIcon className="h-8 w-8 text-gray-lightest cursor-pointer" />
           }
