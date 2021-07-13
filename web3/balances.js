@@ -1,9 +1,9 @@
 import abi from "../web3/abi";
 import { eth } from './provider';
 
-
-const denarisContractAddress = "0xb1c7bC091BE121af3Bf53a37ef21287D61Dfe697";
-const denarisSymbol = "DENARIS";
+const contracts = {
+  DENARIS: "0xb1c7bC091BE121af3Bf53a37ef21287D61Dfe697",
+}
 
 const handleAddress = (dispatch, address) => {
   dispatch({
@@ -26,9 +26,12 @@ const updateWeb3UserInfo = async ( dispatch ) => {
     handleAddress(dispatch, addresses[0]);
     const bnbBalance = await eth.getBalance(addresses[0]);
     handleBalance(dispatch, "bnb", bnbBalance);
-    const denarisInst = new eth.Contract(abi, denarisContractAddress)
-    const denarisBalance = await denarisInst.methods.balanceOf(addresses[0]).call();
-    handleBalance(dispatch, "denaris", denarisBalance);
+
+    for (const symbol of Object.keys(contracts)) {
+      let inst = new eth.Contract(abi, contracts[symbol])
+      let balance = await inst.methods.balanceOf(addresses[0]).call();
+      handleBalance(dispatch, symbol.toLowerCase(), balance);
+    }
   } catch(err) {
     console.log(err);
   }
