@@ -43,4 +43,29 @@
     background-size: cover;
     background-image: url('/backgrounds/Marketplace.jpg')
   }
+
+  .bg-lands {
+    background-size: cover;
+    background-color: #1A1317
+  }
+  
+  .bg-battle {
+    background-size: cover;
+    background-image: url('/backgrounds/Batalla.jpg')
+  }
+  
+  .bg-army {
+    background-size: cover;
+    background-image: url('/backgrounds/Batalla_2.jpg')
+  }
+  
+  .bg-alchemy {
+    background-size: cover;
+    background-image: url('/backgrounds/Construccion.jpg')
+  }
+  
+  .bg-coffers {
+    background-size: cover;
+    background-image: url('/backgrounds/Marketplace.jpg')
+  }
 }

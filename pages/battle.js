@@ -2,14 +2,14 @@ import Layout from "../components/Layout";
 import Sidebar from "../components/Sidebar";
 import ExchangeWidget from "../components/ExchangeWidget";
 
-const Home = () => {
+const Exchange = () => {
 
   return(
-    <Layout bgClass="bg-home">
-      <Sidebar selected={"HOME"}/>
+    <Layout bgClass="bg-battle">
+      <Sidebar selected={"BATTLE"}/>
       {/* Widget */}
     </Layout>
   )
 }
 
-export default Home;
+export default Exchange;
