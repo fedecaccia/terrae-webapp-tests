@@ -6,8 +6,8 @@ function TerraeButton({
   onClick
 }) {
   return (
-    <div className={`flex flex-row justify-center items-center rounded-lg px-5 py-2 cursor-pointer hover:bg-iris-light
-      ${isPrimary && enabled && "bg-iris"} ${isPrimary && enabled && "text-gray-lightest"}
+    <div className={`flex flex-row justify-center items-center rounded-lg px-5 py-2 cursor-pointer
+      ${isPrimary && enabled && "bg-iris hover:bg-iris-light"} ${isPrimary && enabled && "text-gray-lightest"}
       ${!isPrimary && enabled && "bg-gray-lightest"} ${!isPrimary && enabled && "text-iris border-2 border-iris"}
       ${!enabled && "bg-gray"}
       ${extraClass}
