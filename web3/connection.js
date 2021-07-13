@@ -6,8 +6,8 @@ const chains = {
   rinkeby: "0x4",
   goerli: "0x5",
   kovan: "0x2a",
-  binance: "56",
-  tbinance: "97",
+  binance: "0x38", //56
+  tbinance: "0x61", // 97
 }
 
 const askMetamaskConnection = async ({ userWeb3, dispatch }) => {
@@ -22,11 +22,26 @@ const askMetamaskConnection = async ({ userWeb3, dispatch }) => {
     }
   }
 
-  if (ethereum.chainId !== chains.rinkeby) {
+  if (ethereum.chainId !== chains.tbinance) {
     try{
       await ethereum.request({
+        method: 'wallet_addEthereumChain',
+        params: [{
+          chainId: chains.tbinance,
+          nativeCurrency: {
+            name: "Binance",
+            symbol: "BNB",
+            decimals: 18,
+          },
+          chainName: "Binance Smart Chain Testnet",
+          blockExplorerUrls: ["https://testnet.bscscan.com"],
+          rpcUrls: ["https://data-seed-prebsc-1-s1.binance.org:8545"],
+          // iconUrls: [""]
+        }],
+      });
+      await ethereum.request({
         method: 'wallet_switchEthereumChain',
-        params: [{ chainId: chains.rinkeby }],
+        params: [{ chainId: chains.tbinance }],
       });
     } catch(err) {
       console.log(err);

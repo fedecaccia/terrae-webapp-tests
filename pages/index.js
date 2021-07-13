@@ -18,12 +18,22 @@ const Home = () => {
     } else {
       setExpandedSidebar(true);
     }
-  }
+  }  
 
   useEffect(async () => {
     let connected = await askMetamaskConnection({ userWeb3, dispatch });
     if (connected) await updateWeb3UserInfo( dispatch );
   }, []);
+
+  useEffect(() => {
+    if (window.ethereum) {
+      ethereum.on('accountsChanged', async (accounts) => {
+        await updateWeb3UserInfo( dispatch );
+      });
+    }
+  }, []);
+
+  
   
   return (
     <div className="h-screen 
