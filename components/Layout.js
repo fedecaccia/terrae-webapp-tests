@@ -5,7 +5,7 @@ import askMetamaskConnection from "../web3/connection";
 import updateWeb3UserInfo from "../web3/balances";
 import { useWeb3, useDispatchWeb3 } from '../context/Web3';
 
-const Layout = ({ children, bgClass }) => {
+const Layout = ({ children, extraClass }) => {
   const userWeb3 = useWeb3();
   const dispatch = useDispatchWeb3();
 
@@ -27,7 +27,7 @@ const Layout = ({ children, bgClass }) => {
   }, []);  
   
   return (
-    <div className={`h-screen overflow-hidden ${bgClass}`}>
+    <div className={`${extraClass}`}>
       <Head>
         <title>Terrae</title>
         <link rel="icon" href="/TerraeIconBlack.jpg" />
@@ -35,7 +35,7 @@ const Layout = ({ children, bgClass }) => {
 
       <Header/>
 
-      <main className="flex flex-row h-screen">        
+      <main className="flex flex-row">        
         {children}
       </main>
     </div>

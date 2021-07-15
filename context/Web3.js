@@ -1,7 +1,26 @@
 import { useReducer, useContext, createContext } from 'react';
 
-const Web3StateContext = createContext()
-const Web3DispatchContext = createContext()
+const Web3StateContext = createContext();
+const Web3DispatchContext = createContext();
+
+const initialState = {
+  chainId: null,
+  address: "",
+  balances: {
+    bnb: 0,
+    denaris: 0,
+    gold: 0,
+    zafir: 0,
+    esmerald: 0,
+    ruby: 0,
+  },
+  hourlyPower: {
+    gold: 0,
+    zafir: 0,
+    esmerald: 0,
+    ruby: 0,
+  }
+}
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -9,8 +28,7 @@ const reducer = (state, action) => {
       return {...state, address: action.payload}
     case 'UPDATE_BALANCE':
       let response = {
-        address: state.address,
-        chainId: state.chainId,
+        ...state,
         balances: {
           ...state.balances,
         }
@@ -20,28 +38,14 @@ const reducer = (state, action) => {
     case "UPDATE_CHAIN_ID":
       return {...state, chainId: action.payload}
     case "RESET":
-      return {
-        chainId: null,
-        address: "",
-        balances: {
-          bnb: 0,
-          denaris: 0
-        }
-      }
+      return initialState;
     default:
       throw new Error(`Unknown action: ${action.type}`)
   }
 }
 
 export const Web3Provider = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, {
-    chainId: null,
-    address: "",
-    balances: {
-      bnb: 0,
-      denaris: 0
-    }
-  });
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
     <Web3DispatchContext.Provider value={dispatch}>

@@ -21,8 +21,12 @@
   .baseText {
     @apply text-base font-playfair
   }
-  
+
   .mediumText {
+    @apply text-xl font-playfair
+  }
+  
+  .largeText {
     @apply text-2xl font-playfair
   }
   

@@ -2,7 +2,7 @@ import Layout from "../components/Layout";
 import Sidebar from "../components/Sidebar";
 import ExchangeWidget from "../components/ExchangeWidget";
 
-const Exchange = () => {
+const Army = () => {
 
   return(
     <Layout bgClass="bg-army">
@@ -12,4 +12,4 @@ const Exchange = () => {
   )
 }
 
-export default Exchange;
+export default Army;
