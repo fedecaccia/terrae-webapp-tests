@@ -1,4 +1,4 @@
-function PageDescription({ description }) {
+function PageDescription({ description, extraClass }) {
   const getText = () => {
     switch(description) {
       case "LANDS_FARM_TAB":
@@ -11,7 +11,7 @@ function PageDescription({ description }) {
   }
 
   return (
-    <div className="flex flex-row items-start justify-start baseText text-gray-lightest">
+    <div className={`flex flex-row items-start justify-start largeText text-gray-lightest ${extraClass}`}>
       <p>{getText()}</p>
     </div>
   )

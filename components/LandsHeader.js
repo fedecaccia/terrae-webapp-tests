@@ -11,7 +11,7 @@ function LandsHeader({ tabState, setTab }) {
   }
 
   return (
-    <div className="flex flex-row justify-between items-center h-9">
+    <div className="flex flex-col md:flex-row justify-between items-center h-9">
       <Switch
         option1="Farm"
         onOption1={() => setTab("farm")}
