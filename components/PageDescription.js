@@ -15,7 +15,7 @@ function PageDescription({ description, extraClass }) {
   }
 
   return (
-    <div className={`flex flex-row items-start justify-start largeText text-gray-lightest ${extraClass}`}>
+    <div className={`flex flex-row items-start justify-start largeText ${extraClass}`}>
       <p>{getText()}</p>
     </div>
   )
