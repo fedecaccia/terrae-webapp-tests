@@ -16,6 +16,10 @@ const landIds = [
   "forrest3",
   "river3",
   "field3",
+  "valley4",
+  "forrest4",
+  "river4",
+  "field4",
 ]
 
 const initialState = {
