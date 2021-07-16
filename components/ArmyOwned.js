@@ -19,7 +19,7 @@ function ArmyOwned({ result }) {
 
         <div className="flex flex-row justify-between items-center px-2">
           <div>
-            <p className="baseText text-gray-lightest ">
+            <p className="baseText text-gray-lightest">
               {result.id}
             </p>
           </div>
@@ -43,7 +43,7 @@ function ArmyOwned({ result }) {
         </div>
 
         <div className="flex flex-row justify-between items-center px-2 mediumText text-gray-lightest ">
-          <p className="pl-1 addressText text-gray-lightest">Power: {result.power} - Health: {result.health}</p>
+          <p className="addressText text-gray-lightest">Power: {result.power} - Health: {result.health}</p>
         </div>
 
         <TerraeButton

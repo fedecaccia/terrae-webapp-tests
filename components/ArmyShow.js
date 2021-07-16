@@ -43,7 +43,7 @@ function ArmyShow({ result }) {
         </div>
 
         <div className="flex flex-row justify-between items-center px-2 mediumText text-gray-lightest ">
-          <p className="pl-1 addressText text-gray-lightest">Power: {result.power} - Health: {result.health}</p>
+          <p className="addressText text-gray-lightest">Power: {result.power} - Health: {result.health}</p>
         </div>
 
         <TerraeButton
@@ -53,7 +53,6 @@ function ArmyShow({ result }) {
           extraClass="mx-2 mb-3 h-8"
           onClick={()=>console.log("click!")}
         />
-
 
       </div>
     </div>
