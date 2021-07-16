@@ -7,6 +7,7 @@ function LandsHeader({ tabState, setTab }) {
   const userWeb3 = useWeb3();
 
   const getPower = (resource) => {
+
     return userWeb3.hourlyPower[resource.toLowerCase()];
   }
 
