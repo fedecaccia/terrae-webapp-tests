@@ -5,7 +5,7 @@ import { useState } from "react";
 function ArmyOwned({ result }) {
 
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center mt-1">
       <div className="flex flex-col gap-y-3 bg-gray-dark rounded-xl cursor-pointer transition transform hover:-translate-y-1">
         <Image
           className="rounded-xl"

@@ -10,7 +10,7 @@ const Lands = ({ results }) => {
   const [tabState, setTab] = useState("farm");
 
   return(
-    <Layout extraClass="bg-lands bg-contain h-screen overflow-hidden">
+    <Layout extraClass="bg-lands bg-cover h-screen overflow-hidden">
       <Sidebar selected={"LANDS"}/>
       <div className="flex flex-col flex-grow h-screen overflow-y-auto scrollbar-hide md:mx-20">
         <div className="mt-10 mb-20">
@@ -35,97 +35,97 @@ export async function getServerSideProps(context) {
     results: [
       {
         id: "valley1",
-        image: "/lands/valley.png",
+        image: "/lands/valley.webp",
         hourlyYield: 4,
         resource: "ruby"
       },
       {
         id: "forrest1",
-        image: "/lands/forrest.png",
+        image: "/lands/forrest.webp",
         hourlyYield: 3,
         resource: "gold"
       },
       {
         id: "river1",
-        image: "/lands/river.png",
+        image: "/lands/river.webp",
         hourlyYield: 2,
         resource: "esmerald"
       },
       {
         id: "field1",
-        image: "/lands/field.png",
+        image: "/lands/field.webp",
         hourlyYield: 3,
         resource: "zafir"
       },
       {
         id: "valley2",
-        image: "/lands/valley.png",
+        image: "/lands/valley.webp",
         hourlyYield: 4,
         resource: "ruby"
       },
       {
         id: "forrest2",
-        image: "/lands/forrest.png",
+        image: "/lands/forrest.webp",
         hourlyYield: 3,
         resource: "gold"
       },
       {
         id: "river2",
-        image: "/lands/river.png",
+        image: "/lands/river.webp",
         hourlyYield: 2,
         resource: "esmerald"
       },
       {
         id: "field2",
-        image: "/lands/field.png",
+        image: "/lands/field.webp",
         hourlyYield: 3,
         resource: "zafir"
       },
       {
         id: "valley3",
-        image: "/lands/valley.png",
+        image: "/lands/valley.webp",
         hourlyYield: 4,
         resource: "ruby"
       },
       {
         id: "forrest3",
-        image: "/lands/forrest.png",
+        image: "/lands/forrest.webp",
         hourlyYield: 3,
         resource: "gold"
       },
       {
         id: "river3",
-        image: "/lands/river.png",
+        image: "/lands/river.webp",
         hourlyYield: 2,
         resource: "esmerald"
       },
       {
         id: "field3",
-        image: "/lands/field.png",
+        image: "/lands/field.webp",
         hourlyYield: 3,
         resource: "zafir"
       },
       {
         id: "valley4",
-        image: "/lands/valley.png",
+        image: "/lands/valley.webp",
         hourlyYield: 4,
         resource: "ruby"
       },
       {
         id: "forrest4",
-        image: "/lands/forrest.png",
+        image: "/lands/forrest.webp",
         hourlyYield: 3,
         resource: "gold"
       },
       {
         id: "river4",
-        image: "/lands/river.png",
+        image: "/lands/river.webp",
         hourlyYield: 2,
         resource: "esmerald"
       },
       {
         id: "field4",
-        image: "/lands/field.png",
+        image: "/lands/field.webp",
         hourlyYield: 3,
         resource: "zafir"
       },

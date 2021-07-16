@@ -7,10 +7,10 @@ function LandShow({ result }) {
   const [inputValue, setInputValue] = useState(1);
 
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center mt-1">
       <div className="flex flex-col gap-y-3 bg-gray-dark rounded-xl cursor-pointer transition transform hover:-translate-y-1">
         <Image
-          className=""
+          className="rounded-xl"
           objectFit="cover"
           src={result.image}
           width={180*1.25}
