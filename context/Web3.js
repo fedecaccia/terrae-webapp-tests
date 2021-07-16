@@ -22,6 +22,13 @@ const landIds = [
   "field4",
 ]
 
+const heroeIds = [
+  "aman",
+  "pilos",
+  "meises",
+  "adenai",
+]
+
 const initialState = {
   chainId: null,
   address: "",
@@ -40,7 +47,8 @@ const initialState = {
     ruby: 0,
   },
   deposited: {},
-  accumulated: {}
+  accumulated: {},
+  army: {}
 }
 
 landIds.forEach((id) => {
@@ -50,6 +58,14 @@ landIds.forEach((id) => {
   if (id === "valley1" || id === "forrest1" || id === "field1") {
     initialState.deposited[id]=10;
     initialState.accumulated[id]=120;
+  }
+});
+
+heroeIds.forEach((id) => {
+  initialState.army[id]=0;
+
+  if (id === "pilos") {
+    initialState.army[id]=1;
   }
 });
 
