@@ -46,7 +46,12 @@ const initialState = {
 landIds.forEach((id) => {
   initialState.deposited[id]=0;
   initialState.accumulated[id]=0;
-})
+
+  if (id === "valley1" || id === "forrest1" || id === "field1") {
+    initialState.deposited[id]=10;
+    initialState.accumulated[id]=120;
+  }
+});
 
 const reducer = (state, action) => {
   switch (action.type) {

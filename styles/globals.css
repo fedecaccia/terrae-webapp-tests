@@ -40,12 +40,12 @@
   
   .bg-home {
     background-size: cover;
-    background-image: url('/backgrounds/Construccion.jpg')
+    background-image: url('/backgrounds/construccion.png')
   }
 
   .bg-exchange {
     background-size: cover;
-    background-image: url('/backgrounds/Marketplace.jpg')
+    background-image: url('/backgrounds/marketplace.jpg')
   }
 
   .bg-lands {
@@ -55,21 +55,21 @@
   
   .bg-battle {
     background-size: cover;
-    background-image: url('/backgrounds/Batalla.jpg')
+    background-image: url('/backgrounds/batalla1.png')
   }
   
   .bg-army {
     background-size: cover;
-    background-image: url('/backgrounds/Batalla_2.jpg')
+    background-image: url('/backgrounds/batalla2.png')
   }
   
   .bg-alchemy {
     background-size: cover;
-    background-image: url('/backgrounds/Construccion.jpg')
+    background-image: url('/backgrounds/construccion.png')
   }
   
   .bg-coffers {
     background-size: cover;
-    background-image: url('/backgrounds/Marketplace.jpg')
+    background-image: url('/backgrounds/marketplace.jpg')
   }
 }
