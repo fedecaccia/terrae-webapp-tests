@@ -39,37 +39,30 @@
   }
   
   .bg-home {
-    background-size: cover;
     background-image: url('/backgrounds/construccion.webp')
   }
 
   .bg-exchange {
-    background-size: cover;
     background-image: url('/backgrounds/marketplace.webp')
   }
 
   .bg-lands {
-    background-size: cover;
     background-color: #1A1317
   }
   
   .bg-battle {
-    background-size: cover;
     background-image: url('/backgrounds/batalla1.webp')
   }
   
   .bg-army {
-    background-size: cover;
     background-image: url('/backgrounds/batalla2.webp')
   }
   
   .bg-alchemy {
-    background-size: cover;
     background-image: url('/backgrounds/construccion.webp')
   }
   
   .bg-coffers {
-    background-size: cover;
     background-image: url('/backgrounds/marketplace.webp')
   }
 }

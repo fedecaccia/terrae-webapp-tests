@@ -12,7 +12,7 @@ const Army = ({ results }) => {
   const [tabNavigatorState, setTabNavigatorState] = useState("soldier");
 
   return(
-    <Layout extraClass="bg-army bg-contain h-screen overflow-hidden">
+    <Layout extraClass="bg-army bg-cover h-screen overflow-hidden">
       <Sidebar selected={"ARMY"}/>
       <div className="flex flex-col flex-grow h-screen overflow-y-auto scrollbar-hide md:mx-20">
         <div className="mt-10 mb-20">
