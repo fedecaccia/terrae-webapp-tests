@@ -31,7 +31,7 @@ function LandsHeader({ tabState, setTab }) {
           <Image
             className=""
             objectFit="cover"
-            src={"/resources/Esmerald.png"}
+            src={"/resources/esmerald.png"}
             width={25}
             height={25}
             layout="fixed"
@@ -44,7 +44,7 @@ function LandsHeader({ tabState, setTab }) {
           <Image
             className=""
             objectFit="cover"
-            src={"/resources/Gold.png"}
+            src={"/resources/gold.png"}
             width={25}
             height={25}
             layout="fixed"
@@ -57,7 +57,7 @@ function LandsHeader({ tabState, setTab }) {
         <Image
             className=""
             objectFit="cover"
-            src={"/resources/Ruby.png"}
+            src={"/resources/ruby.png"}
             width={25}
             height={25}
             layout="fixed"
@@ -70,7 +70,7 @@ function LandsHeader({ tabState, setTab }) {
         <Image
             className=""
             objectFit="cover"
-            src={"/resources/Zafir.png"}
+            src={"/resources/zafir.png"}
             width={25}
             height={25}
             layout="fixed"
