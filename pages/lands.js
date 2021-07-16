@@ -15,7 +15,7 @@ const Lands = ({ results }) => {
       <div className="flex flex-col flex-grow h-screen overflow-y-auto scrollbar-hide md:mx-20">
         <div className="mt-10 mb-20">
           <LandsHeader tabState={tabState} setTab={setTab}/>
-          <PageDescription extraClass="mt-8 mb-20 text-gray-dark" description={tabState==="farm" ? "LANDS_FARM_TAB" : "LANDS_OWNED_TAB"}/>
+          <PageDescription extraClass="mt-8 mb-20 text-gray-lightest" description={tabState==="farm" ? "LANDS_FARM_TAB" : "LANDS_OWNED_TAB"}/>
           <LandsLayout tabState={tabState} results={results}/>
         </div>
       </div>
