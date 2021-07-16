@@ -5,7 +5,7 @@ import ExchangeWidget from "../components/ExchangeWidget";
 const Army = () => {
 
   return(
-    <Layout bgClass="bg-army">
+    <Layout extraClass="bg-army">
       <Sidebar selected={"ARMY"}/>
       {/* Widget */}
     </Layout>

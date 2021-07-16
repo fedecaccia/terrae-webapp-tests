@@ -12,10 +12,10 @@ const Lands = ({ results }) => {
   return(
     <Layout extraClass="bg-lands bg-contain h-screen overflow-hidden">
       <Sidebar selected={"LANDS"}/>
-      <div className="flex flex-col flex-grow h-screen overflow-y-auto scrollbar-hide  mx-20 gap-8">
+      <div className="flex flex-col flex-grow h-screen overflow-y-auto scrollbar-hide md:mx-20">
         <div className="mt-10 mb-20">
           <LandsHeader tabState={tabState} setTab={setTab}/>
-          <PageDescription description={tabState==="farm" ? "LANDS_FARM_TAB" : "LANDS_OWNED_TAB"}/>
+          <PageDescription extraClass="mt-8 mb-20" description={tabState==="farm" ? "LANDS_FARM_TAB" : "LANDS_OWNED_TAB"}/>
           <LandsLayout tabState={tabState} results={results}/>
         </div>
       </div>

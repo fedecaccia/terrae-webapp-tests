@@ -141,7 +141,7 @@ const ExchangeWidget = () => {
               maxBalance={isBuying ? bnbHumanBalance : denarisHumanBalance}
               setMax={isBuying ? setMaxBNB : setMaxDENARIS}
               symbol={isBuying ? "BNB" : "DENARIS"}
-              iconSource={isBuying ? "/BNB.png" : "/DENARIS.png"}
+              iconSource={isBuying ? "/BNB.png" : "/denaris.png"}
               isFrom={true}
             />
 
@@ -172,7 +172,7 @@ const ExchangeWidget = () => {
               maxBalance={!isBuying ? bnbHumanBalance : denarisHumanBalance}
               setMax={!isBuying ? setMaxBNB : setMaxDENARIS}
               symbol={!isBuying ? "BNB" : "DENARIS"}
-              iconSource={!isBuying ? "/BNB.png" : "/DENARIS.png"}
+              iconSource={!isBuying ? "/BNB.png" : "/denaris.png"}
               isFrom={false}
             />
 

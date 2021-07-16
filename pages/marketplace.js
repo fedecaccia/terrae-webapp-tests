@@ -5,7 +5,7 @@ import ExchangeWidget from "../components/ExchangeWidget";
 const Exchange = () => {
 
   return(
-    <Layout bgClass="bg-exchange">
+    <Layout extraClass="bg-exchange">
       <Sidebar selected={"MARKETPLACE"}/>
       {/* Widget */}
     </Layout>

@@ -63,7 +63,7 @@ function LandOwned({ result }) {
             <Image
               className=""
               objectFit="cover"
-              src={`/resources/${result.resource}.png`}
+              src={`/denaris.png`}
               width={25}
               height={25}
               layout="fixed"

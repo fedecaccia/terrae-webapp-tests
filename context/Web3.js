@@ -3,6 +3,21 @@ import { useReducer, useContext, createContext } from 'react';
 const Web3StateContext = createContext();
 const Web3DispatchContext = createContext();
 
+const landIds = [
+  "valley1",
+  "forrest1",
+  "river1",
+  "field1",
+  "valley2",
+  "forrest2",
+  "river2",
+  "field2",
+  "valley3",
+  "forrest3",
+  "river3",
+  "field3",
+]
+
 const initialState = {
   chainId: null,
   address: "",
@@ -19,8 +34,15 @@ const initialState = {
     zafir: 0,
     esmerald: 0,
     ruby: 0,
-  }
+  },
+  deposited: {},
+  accumulated: {}
 }
+
+landIds.forEach((id) => {
+  initialState.deposited[id]=0;
+  initialState.accumulated[id]=0;
+})
 
 const reducer = (state, action) => {
   switch (action.type) {
