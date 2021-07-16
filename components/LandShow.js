@@ -41,7 +41,7 @@ function LandShow({ result }) {
 
         <div className="flex flex-row justify-between items-center px-2 mediumText text-gray-lightest ">
            <input
-            style={{ width: "150px", "text-align": "right", "border-radius": 5 }}
+            style={{ width: "150px", "textAlign": "right", "borderRadius": 5 }}
             ref={inputRef}
             type="number"
             value={inputValue}
