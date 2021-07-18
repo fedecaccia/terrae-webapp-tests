@@ -6,6 +6,10 @@ import {
   ChevronDownIcon
 } from "@heroicons/react/outline";
 import { useWeb3, useDispatchWeb3 } from '../context/Web3';
+import { swapExactETHForTokens } from "../web3/exchange";
+import { useToasts } from "react-toast-notifications";
+// import { toast, ToastContainer } from 'react-nextjs-toast';
+
 
 const ExchangeWidget = () => {
   const [isBuying, setBuy] = useState(true);
@@ -14,6 +18,8 @@ const ExchangeWidget = () => {
   const [enoughFrom, setEnoughFrom] = useState(true);
 
   const userWeb3 = useWeb3();
+  const dispatch = useDispatchWeb3();
+
   const bnbBalance = userWeb3.balances.bnb;
   const denarisBalance = userWeb3.balances.denaris;
   
@@ -22,6 +28,8 @@ const ExchangeWidget = () => {
 
   const maxPrecision=8;
   const denarisPrice=0.01;
+
+  const { addToast } = useToasts();
 
   const toHumanFormat = (value, decimals) => {
     return (value/(10**decimals)).toFixed(maxPrecision);
@@ -90,13 +98,34 @@ const ExchangeWidget = () => {
     : (value*denarisPrice>bnbHumanBalance ? setEnoughFrom(false) : setEnoughFrom(true));
   };
 
-  const trade = () => {
+  const swap = async () => {
 
+    const options = {
+      from: userWeb3.address,
+      swapExactETHForTokens: {
+        amountETH: fromValue,
+        amountOutMin: parseInt(toValue*1000000000000*0.99),
+        deadline: Date.now() + 60*1000*60*24, // 1 day
+      },
+    }
+
+    addToast("Success!", { appearance: "warning" });
+    
+    try{
+      setFromValue(0);
+      let receipt = await swapExactETHForTokens(userWeb3, dispatch, options);
+      addToast("Success swap!", { appearance: "success" });
+    } catch(err) {
+      addToast(`Error in swap. Please check transaction details in block explorer.`,{
+        appearance: "error"
+      })
+    }
   }
 
   return (
     <div className="flex-grow h-screen 
     md:pb-44 md:pt-6 md:mr-4 xl:mr-40 overflow-y-auto scrollbar-hide">
+      {/* <ToastContainer /> */}
       
       <div className="flex flex-col sticky
         w-full h-full pt-7 pb-6
@@ -189,7 +218,7 @@ const ExchangeWidget = () => {
               isPrimary
               text={isBuying ? "BUY" : "SELL"}
               enabled={enoughFrom && fromValue>0 ? true : false}
-              onClick={trade}
+              onClick={enoughFrom && fromValue>0 ? swap : ()=>{}}
             />
 
           </div>

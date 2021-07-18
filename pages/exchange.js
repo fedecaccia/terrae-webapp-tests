@@ -5,7 +5,7 @@ import ExchangeWidget from "../components/ExchangeWidget";
 const Exchange = () => {
 
   return(
-    <Layout extraClass="bg-exchange bg-cover h-screen overflow-hidden">
+    <Layout extraClass="bg-exchange bg-cover h-screen overflow-hidden">      
       <Sidebar selected={"EXCHANGE"}/>
       <ExchangeWidget/>
     </Layout>
