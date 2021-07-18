@@ -32,6 +32,7 @@ const heroeIds = [
 const initialState = {
   chainId: null,
   address: "",
+  denarisPrice: 0,
   decimals: {
     bnb: 18,
     denaris: 6,
@@ -87,6 +88,8 @@ const reducer = (state, action) => {
       return response;
     case "UPDATE_CHAIN_ID":
       return {...state, chainId: action.payload}
+    case "UPDATE_DENARIS_PRICE":
+      return {...state, denarisPrice: action.payload}
     case "RESET":
       return initialState;
     default:

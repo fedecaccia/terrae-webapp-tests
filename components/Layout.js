@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import { useEffect } from "react";
 import askMetamaskConnection from "../web3/connection";
 import updateWeb3UserInfo from "../web3/balances";
+import { updateDenarisPrice } from "../web3/exchange";
 import { useWeb3, useDispatchWeb3 } from '../context/Web3';
 
 const Layout = ({ children, extraClass }) => {
@@ -11,7 +12,10 @@ const Layout = ({ children, extraClass }) => {
 
   useEffect(async () => {
     let connected = await askMetamaskConnection({ userWeb3, dispatch });
-    if (connected) await updateWeb3UserInfo( dispatch );
+    if (connected) {
+      await updateWeb3UserInfo( dispatch );
+      await updateDenarisPrice( dispatch );
+    }
   }, []);
 
   useEffect(() => {

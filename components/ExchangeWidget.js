@@ -2,13 +2,11 @@ import Switch from "./Switch";
 import TokenInput from "./TokenInput";
 import TerraeButton from "./TerraeButton";
 import { useState, useRef } from "react";
-import {
-  ChevronDownIcon
-} from "@heroicons/react/outline";
+import { ChevronDownIcon } from "@heroicons/react/outline";
 import { useWeb3, useDispatchWeb3 } from '../context/Web3';
-import { swapExactETHForTokens } from "../web3/exchange";
+import { swapExactETHForTokens, swapExactTokensForETH, getDenarisPrice } from "../web3/exchange";
+import updateWeb3UserInfo from "../web3/balances";
 import { useToasts } from "react-toast-notifications";
-// import { toast, ToastContainer } from 'react-nextjs-toast';
 
 
 const ExchangeWidget = () => {
@@ -26,14 +24,15 @@ const ExchangeWidget = () => {
   const fromInputRef = useRef(null);
   const toInputRef = useRef(null);
 
-  const maxPrecision=8;
-  const denarisPrice=0.01;
-
+  const maxPrecision=6;
+  
   const { addToast } = useToasts();
-
+  
   const toHumanFormat = (value, decimals) => {
     return (value/(10**decimals)).toFixed(maxPrecision);
   }
+  
+  const denarisPrice=userWeb3.denarisPrice;
 
   const bnbHumanBalance = toHumanFormat(bnbBalance, userWeb3.decimals.bnb);
   const denarisHumanBalance = toHumanFormat(denarisBalance, userWeb3.decimals.denaris);
@@ -102,22 +101,38 @@ const ExchangeWidget = () => {
 
     const options = {
       from: userWeb3.address,
-      swapExactETHForTokens: {
+    }
+    let operation;
+    
+    if (isBuying){
+      
+      operation = swapExactETHForTokens;
+      options.swapExactETHForTokens = {
         amountETH: fromValue,
-        amountOutMin: parseInt(toValue*1000000000000*0.99),
+        amountOutMin: 0,//parseInt(toValue*0.99),
         deadline: Date.now() + 60*1000*60*24, // 1 day
-      },
-    }    
+      }
+    } else {
+      operation = swapExactTokensForETH;
+      options.swapExactTokensForETH = {
+        amountToken: fromValue,
+        amountETHMin: 0,//toValue*0.99,
+        deadline: Date.now() + 60*1000*60*24, // 1 day
+      }
+    }
     
     try{
       setFromValue(0);
-      let receipt = await swapExactETHForTokens(userWeb3, dispatch, options);
-      addToast("Success swap!", { appearance: "success" });
+      addToast("Processing... please wait", { appearance: "info", autoDismissTimeout: "30000" });
+      let receipt = await operation(userWeb3, dispatch, options);
+      addToast(`Success swap!`, { appearance: "success" });
+      // addToast(`Success swap! Transaction hash: ${receipt.transactionHash}`, { appearance: "success" });
+      await updateWeb3UserInfo(dispatch);
     } catch(err) {
       console.log(err);
-      addToast(`Error in swap. Please check transaction details in block explorer.`,{
+      addToast(`Swap couldn't be completed`,{
         appearance: "error"
-      })
+      });
     }
   }
 
@@ -207,7 +222,7 @@ const ExchangeWidget = () => {
                 price
               </p>
               <p className="baseText text-gray-lightest">
-                {denarisPrice} BNB per DENARIS
+                {parseFloat(denarisPrice).toFixed(8)} BNB per DENARIS
               </p>
             </div>
 

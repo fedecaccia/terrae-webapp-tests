@@ -15,7 +15,7 @@ function TokenInput({
       
       <div className="flex flex-row justify-between px-5">
         <div className="text-left">
-          <p>{isFrom ? "From" : "To"}</p>
+          <p>{isFrom ? "From" : "To (~aprox)"}</p>
         </div>
         <div className="text-right">
           <p>Balance: {maxBalance}</p>
