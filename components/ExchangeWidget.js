@@ -107,15 +107,14 @@ const ExchangeWidget = () => {
         amountOutMin: parseInt(toValue*1000000000000*0.99),
         deadline: Date.now() + 60*1000*60*24, // 1 day
       },
-    }
-
-    addToast("Success!", { appearance: "warning" });
+    }    
     
     try{
       setFromValue(0);
       let receipt = await swapExactETHForTokens(userWeb3, dispatch, options);
       addToast("Success swap!", { appearance: "success" });
     } catch(err) {
+      console.log(err);
       addToast(`Error in swap. Please check transaction details in block explorer.`,{
         appearance: "error"
       })

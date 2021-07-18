@@ -30,6 +30,7 @@ const ethToWei = eth => (eth*10**ETH_DECIMALS);
 const denarisToWei = denaris => (denaris*10**DENARIS_DECIMALS);
 
 export const swapExactETHForTokens = async ( userWeb3, dispatch, options ) => {
+
   const myAddress = options.from;
 
   // const contractInstanceAddress = web3.utils.toChecksumAddress(options.routerAddress);
@@ -58,9 +59,15 @@ export const swapExactETHForTokens = async ( userWeb3, dispatch, options ) => {
     myAddress,
     options.swapExactETHForTokens.deadline
   ).send(contractOptions)
-  // .once('sending', function(payload){ console.log(payload) })
-  // .once('sent', function(payload){ console.log(payload) })
-  .once('transactionHash', function(hash){ console.log(hash) })
+  // .once('sending', function(payload){ 
+  //   console.log(payload);
+  //  })
+  // .once('sent', function(payload){ 
+  //   console.log(payload);
+  //  })
+  .once('transactionHash', function(hash){ 
+    console.log(hash);
+   })
   // .once('receipt', function(receipt){ console.log(receipt) })
   // .on('confirmation', function(confNumber, receipt, latestBlockHash){ 
   //   // console.log(confNumber);console.log(receipt);console.log(latestBlockHash); 
