@@ -7,9 +7,6 @@ import {
 } from "@heroicons/react/outline";
 import { useWeb3, useDispatchWeb3 } from '../context/Web3';
 
-const BNB_DECIMALS = 18;
-const DENARIS_DECIMALS = 18;
-
 const ExchangeWidget = () => {
   const [isBuying, setBuy] = useState(true);
   const [fromValue, setFromValue] = useState(0);
@@ -30,8 +27,8 @@ const ExchangeWidget = () => {
     return (value/(10**decimals)).toFixed(maxPrecision);
   }
 
-  const bnbHumanBalance = toHumanFormat(bnbBalance, BNB_DECIMALS);
-  const denarisHumanBalance = toHumanFormat(denarisBalance, DENARIS_DECIMALS);
+  const bnbHumanBalance = toHumanFormat(bnbBalance, userWeb3.decimals.bnb);
+  const denarisHumanBalance = toHumanFormat(denarisBalance, userWeb3.decimals.denaris);
 
   const onBuy = () => {
     setBuy(true);
@@ -188,7 +185,7 @@ const ExchangeWidget = () => {
 
             {/* Action button */}
             <TerraeButton
-              extraClass={`flex flex-row w-full mt-2 ${enoughFrom && fromValue>0 && "hover:scale-105"}`}
+              extraClass={`flex flex-row w-full mt-2 ${enoughFrom && fromValue>0 && "hover:scale-100"}`}
               isPrimary
               text={isBuying ? "BUY" : "SELL"}
               enabled={enoughFrom && fromValue>0 ? true : false}

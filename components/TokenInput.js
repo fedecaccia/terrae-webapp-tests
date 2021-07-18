@@ -26,7 +26,7 @@ function TokenInput({
 
         <div>
           <input
-            style={{ width: "150px", "text-align": "left", "border-radius": 5 }}
+            style={{ width: "150px", "textAlign": "left", "borderRadius": 5 }}
             ref={inputRef}
             type="number"
             value={value}

@@ -32,6 +32,14 @@ const heroeIds = [
 const initialState = {
   chainId: null,
   address: "",
+  decimals: {
+    bnb: 18,
+    denaris: 6,
+    gold: 6,
+    zafir: 6,
+    esmerald: 6,
+    ruby: 6,
+  },
   balances: {
     bnb: 0,
     denaris: 0,
@@ -74,12 +82,7 @@ const reducer = (state, action) => {
     case 'UPDATE_ADDRESS':
       return {...state, address: action.payload}
     case 'UPDATE_BALANCE':
-      let response = {
-        ...state,
-        balances: {
-          ...state.balances,
-        }
-      };
+      let response = {...state};
       response.balances[action.payload.token] = action.payload.balance;
       return response;
     case "UPDATE_CHAIN_ID":
