@@ -4,7 +4,7 @@ import TerraeButton from "./TerraeButton";
 import { useState, useRef } from "react";
 import { ChevronDownIcon } from "@heroicons/react/outline";
 import { useWeb3, useDispatchWeb3 } from '../context/Web3';
-import { swapExactETHForTokens, swapExactTokensForETH, getDenarisPrice } from "../web3/exchange";
+import { swapExactETHForTokens, swapExactTokensForETH, updateDenarisPrice } from "../web3/exchange";
 import updateWeb3UserInfo from "../web3/balances";
 import { useToasts } from "react-toast-notifications";
 
@@ -128,6 +128,7 @@ const ExchangeWidget = () => {
       addToast(`Success swap!`, { appearance: "success" });
       // addToast(`Success swap! Transaction hash: ${receipt.transactionHash}`, { appearance: "success" });
       await updateWeb3UserInfo(dispatch);
+      await updateDenarisPrice(dispatch);
     } catch(err) {
       console.log(err);
       addToast(`Swap couldn't be completed`,{
