@@ -1,14 +1,18 @@
 import Switch from "./Switch";
 import Image from "next/image";
 import { useWeb3 } from '../context/Web3';
+import BigNumber from 'bignumber.js';
 
 function LandsHeader({ tabState, setTab }) {
   
   const userWeb3 = useWeb3();
 
+  const weiToEth = (amount) => (BigNumber(amount).dividedBy(10**18).toFixed(4));
+
   const getPower = (resource) => {
 
-    return userWeb3.hourlyPower[resource.toLowerCase()];
+    let power = userWeb3.hourlyPower[resource.toLowerCase()];
+    return weiToEth(power);
   }
 
   return (

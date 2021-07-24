@@ -1,14 +1,9 @@
 import { useReducer, useContext, createContext } from 'react';
+// import BigNumber from './node_modules/bignumber.js/bignumber.mjs';
+import BigNumber from 'bignumber.js';
 
 const Web3StateContext = createContext();
 const Web3DispatchContext = createContext();
-
-const landIds = [
-  "Gold Farm",
-  "Emerald Farm",
-  "Sapphire Farm",
-  "Ruby Farm",
-]
 
 const heroeIds = [
   "aman",
@@ -51,16 +46,6 @@ const initialState = {
 
 /* POPULATE INIT STATE FOR DEMO */
 
-landIds.forEach((id) => {
-  initialState.deposited[id]=0;
-  initialState.accumulated[id]=0;
-
-  if (id === "Gold Farm" || id === "Sapphire Farm") {
-    initialState.deposited[id]=10;
-    initialState.accumulated[id]=120;
-  }
-});
-
 heroeIds.forEach((id) => {
   initialState.army[id]=0;
 
@@ -79,9 +64,34 @@ const reducer = (state, action) => {
       response.balances[action.payload.token] = action.payload.balance;
       return response;
     case "UPDATE_CHAIN_ID":
-      return {...state, chainId: action.payload}
+      return { ...state, chainId: action.payload }
     case "UPDATE_DENARIS_PRICE":
-      return {...state, denarisPrice: action.payload}
+      return { ...state, denarisPrice: action.payload }
+    case "UPDATE_REWARD":
+      let accumulated = state.accumulated;
+      if (!accumulated[action.payload.farm]) accumulated[action.payload.farm] = {};
+      accumulated[action.payload.farm][action.payload.reward[0].toLowerCase()] = action.payload.reward[1];
+      return { ...state, accumulated }
+    case "UPDATE_STAKE":
+      let deposited = state.deposited;
+      if (!deposited[action.payload.farm]) deposited[action.payload.farm] = {};
+      deposited[action.payload.farm] = action.payload.stake;
+      return { ...state, deposited }
+    case "UPDATE_YIELD": // farm, resources, rewards
+      let hourlyPower = {
+        tgld: 0,
+        tspp: 0,
+        temr: 0,
+        trby: 0,
+      }
+      
+      action.payload.farms.forEach((farm) => {
+        for (let r=0; r<farm.resources.length; r++){
+          hourlyPower[farm.resources[r].toLowerCase()] += BigNumber(state.deposited[farm.id]).multipliedBy(farm.rewardsPerBlock[r]).multipliedBy(20*60).toString();
+        }
+      });
+
+      return { ...state, hourlyPower }
     case "RESET":
       return initialState;
     default:
