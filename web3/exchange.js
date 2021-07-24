@@ -1,18 +1,18 @@
-import abi from "./abi";
 import { eth } from './provider';
+import contractDenarisAbi from "./denarisAbi";
+import contractPancakeRouterAbi from "./uniswapV2Router02Abi";
+import contractPairAbi from "./contractPairAbi";
+import addresses from "./addresses";
 
-const pancakeRouter = "0xD99D1c33F9fC3444f8101754aBC46c52416550D1";
-const denarisAddress = "0xb1c7bC091BE121af3Bf53a37ef21287D61Dfe697";
-const wbnbAddress = "0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd";
-const denarisETHPairAddress = "0x814346FcAD3c4DB287fc6C1853c840ebE6F17A65";
+
+const pancakeRouter = addresses.arch.pancakeRouter;
+const denarisAddress = addresses.tokens.TDEN;
+const wbnbAddress = addresses.wrapped.WBNB;
+const denarisETHPairAddress = addresses.arch.tdenMainPool;
 
 const routerAddress = pancakeRouter;
 const ETH_DECIMALS = 18;
-const DENARIS_DECIMALS = 6;
-
-import contractDenarisAbi from "./abi";
-import contractPancakeRouterAbi from "./uniswapV2Router02Abi";
-import contractPairAbi from "./contractPairAbi";
+const DENARIS_DECIMALS = 18;
 
 // const handleAddress = (dispatch, address) => {
 //   dispatch({

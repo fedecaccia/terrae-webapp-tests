@@ -32,13 +32,13 @@ function LandsHeader({ tabState, setTab }) {
           <Image
             className=""
             objectFit="cover"
-            src={"/resources/esmerald.png"}
+            src={"/resources/emerald.png"}
             width={25}
             height={25}
             layout="fixed"
             alt=""
           />
-          <p className="pl-1">{getPower("esmerald")}/hr</p>
+          <p className="pl-1">{getPower("TEMR")}/hr</p>
         </div>
         
         <div className="flex flex-row items-center justify-center pr-5">
@@ -51,7 +51,7 @@ function LandsHeader({ tabState, setTab }) {
             layout="fixed"
             alt=""
           />
-          <p className="pl-1">{getPower("gold")}/hr</p>
+          <p className="pl-1">{getPower("TGLD")}/hr</p>
         </div>
         
         <div className="flex flex-row items-center justify-center pr-5">
@@ -64,20 +64,20 @@ function LandsHeader({ tabState, setTab }) {
             layout="fixed"
             alt=""
           />
-          <p className="pl-1">{getPower("ruby")}/hr</p>
+          <p className="pl-1">{getPower("TRBY")}/hr</p>
         </div>
         
         <div className="flex flex-row items-center justify-center">
         <Image
             className=""
             objectFit="cover"
-            src={"/resources/zafir.png"}
+            src={"/resources/sapphire.png"}
             width={25}
             height={25}
             layout="fixed"
             alt=""
           />
-          <p className="pl-1">{getPower("zafir")}/hr</p>
+          <p className="pl-1">{getPower("TSPP")}/hr</p>
         </div>
       </div>
     </div>

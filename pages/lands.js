@@ -31,103 +31,41 @@ export async function getServerSideProps(context) {
   //   }`
   // ).then(res => res.json());
 
+
+  const BLOCKS_PER_HOUR=20*60;
+  const TOKEN_DECIMALS=18;
+  const weiToEth = amount => (amount/(10**TOKEN_DECIMALS));
+  const blockToHourlyYield = blockRate => (weiToEth(blockRate*BLOCKS_PER_HOUR))
+
   const request = {
     results: [
       {
-        id: "valley1",
+        id: "Farm Ruby",
         image: "/lands/valley.webp",
-        hourlyYield: 4,
-        resource: "ruby"
+        hourlyYield: blockToHourlyYield(4000),
+        resource: "TRBY",
+        resourceImage: "/resources/ruby.png"
       },
       {
-        id: "forrest1",
+        id: "Farm Gold",
         image: "/lands/forrest.webp",
-        hourlyYield: 3,
-        resource: "gold"
+        hourlyYield: blockToHourlyYield(4000),
+        resource: "TGLD",
+        resourceImage: "/resources/gold.png"
       },
       {
-        id: "river1",
+        id: "Farm Emerald",
         image: "/lands/river.webp",
-        hourlyYield: 2,
-        resource: "esmerald"
+        hourlyYield: blockToHourlyYield(4000),
+        resource: "TEMR",
+        resourceImage: "/resources/emerald.png"
       },
       {
-        id: "field1",
+        id: "Farm Sapphire",
         image: "/lands/field.webp",
-        hourlyYield: 3,
-        resource: "zafir"
-      },
-      {
-        id: "valley2",
-        image: "/lands/valley.webp",
-        hourlyYield: 4,
-        resource: "ruby"
-      },
-      {
-        id: "forrest2",
-        image: "/lands/forrest.webp",
-        hourlyYield: 3,
-        resource: "gold"
-      },
-      {
-        id: "river2",
-        image: "/lands/river.webp",
-        hourlyYield: 2,
-        resource: "esmerald"
-      },
-      {
-        id: "field2",
-        image: "/lands/field.webp",
-        hourlyYield: 3,
-        resource: "zafir"
-      },
-      {
-        id: "valley3",
-        image: "/lands/valley.webp",
-        hourlyYield: 4,
-        resource: "ruby"
-      },
-      {
-        id: "forrest3",
-        image: "/lands/forrest.webp",
-        hourlyYield: 3,
-        resource: "gold"
-      },
-      {
-        id: "river3",
-        image: "/lands/river.webp",
-        hourlyYield: 2,
-        resource: "esmerald"
-      },
-      {
-        id: "field3",
-        image: "/lands/field.webp",
-        hourlyYield: 3,
-        resource: "zafir"
-      },
-      {
-        id: "valley4",
-        image: "/lands/valley.webp",
-        hourlyYield: 4,
-        resource: "ruby"
-      },
-      {
-        id: "forrest4",
-        image: "/lands/forrest.webp",
-        hourlyYield: 3,
-        resource: "gold"
-      },
-      {
-        id: "river4",
-        image: "/lands/river.webp",
-        hourlyYield: 2,
-        resource: "esmerald"
-      },
-      {
-        id: "field4",
-        image: "/lands/field.webp",
-        hourlyYield: 3,
-        resource: "zafir"
+        hourlyYield: blockToHourlyYield(4000),
+        resource: "TSPP",
+        resourceImage: "/resources/sapphire.png"
       },
     ]
   }

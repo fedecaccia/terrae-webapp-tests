@@ -29,7 +29,7 @@ function LandShow({ result }) {
             <Image
               className=""
               objectFit="cover"
-              src={`/resources/${result.resource}.png`}
+              src={result.resourceImage}
               width={25}
               height={25}
               layout="fixed"
@@ -39,7 +39,7 @@ function LandShow({ result }) {
           </div>
         </div>
 
-        <div className="flex flex-row justify-between items-center px-2 mediumText text-gray-lightest ">
+        <div className="flex flex-row justify-between items-center px-2 mediumText text-gray-lightest gap-1">
            <input
             style={{ width: "150px", "textAlign": "right", "borderRadius": 5 }}
             ref={inputRef}
@@ -47,6 +47,15 @@ function LandShow({ result }) {
             value={inputValue}
             onChange={(newValue) => setInputValue(newValue.currentTarget.value)}
             className="focus:outline-none bg-gray flex-grow"
+          />
+          <Image
+            className=""
+            objectFit="cover"
+            src={"/denaris.png"}
+            width={25}
+            height={25}
+            layout="fixed"
+            alt=""
           />
         </div>
 

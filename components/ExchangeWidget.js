@@ -19,7 +19,7 @@ const ExchangeWidget = () => {
   const dispatch = useDispatchWeb3();
 
   const bnbBalance = userWeb3.balances.bnb;
-  const denarisBalance = userWeb3.balances.denaris;
+  const denarisBalance = userWeb3.balances.tden;
   
   const fromInputRef = useRef(null);
   const toInputRef = useRef(null);
@@ -35,7 +35,7 @@ const ExchangeWidget = () => {
   const denarisPrice=userWeb3.denarisPrice;
 
   const bnbHumanBalance = toHumanFormat(bnbBalance, userWeb3.decimals.bnb);
-  const denarisHumanBalance = toHumanFormat(denarisBalance, userWeb3.decimals.denaris);
+  const denarisHumanBalance = toHumanFormat(denarisBalance, userWeb3.decimals.tden);
 
   const onBuy = () => {
     setBuy(true);

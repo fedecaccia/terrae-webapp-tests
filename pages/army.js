@@ -50,11 +50,11 @@ export async function getServerSideProps(context) {
         health: 50,
         cost: [
           {
-            resource: "ruby",
+            resource: "TRBY",
             amount: 35,
           },
           {
-            resource: "esmerald",
+            resource: "TEMR",
             amount: 50,
           },
         ]
@@ -67,11 +67,11 @@ export async function getServerSideProps(context) {
         health: 50,
         cost: [
           {
-            resource: "ruby",
+            resource: "TRBY",
             amount: 35,
           },
           {
-            resource: "zafir",
+            resource: "TSPP",
             amount: 50,
           },
         ]
@@ -84,11 +84,11 @@ export async function getServerSideProps(context) {
         health: 50,
         cost: [
           {
-            resource: "gold",
+            resource: "TGLD",
             amount: 35,
           },
           {
-            resource: "zafir",
+            resource: "TSPP",
             amount: 50,
           },
         ]
@@ -101,11 +101,11 @@ export async function getServerSideProps(context) {
         health: 50,
         cost: [
           {
-            resource: "gold",
+            resource: "TGLD",
             amount: 35,
           },
           {
-            resource: "esmerald",
+            resource: "TEMR",
             amount: 50,
           },
         ]

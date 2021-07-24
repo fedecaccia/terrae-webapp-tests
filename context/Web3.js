@@ -4,22 +4,10 @@ const Web3StateContext = createContext();
 const Web3DispatchContext = createContext();
 
 const landIds = [
-  "valley1",
-  "forrest1",
-  "river1",
-  "field1",
-  "valley2",
-  "forrest2",
-  "river2",
-  "field2",
-  "valley3",
-  "forrest3",
-  "river3",
-  "field3",
-  "valley4",
-  "forrest4",
-  "river4",
-  "field4",
+  "Gold Farm",
+  "Emerald Farm",
+  "Sapphire Farm",
+  "Ruby Farm",
 ]
 
 const heroeIds = [
@@ -35,36 +23,39 @@ const initialState = {
   denarisPrice: 0,
   decimals: {
     bnb: 18,
-    denaris: 6,
-    gold: 6,
-    zafir: 6,
-    esmerald: 6,
-    ruby: 6,
+    tden: 18,
+    tgld: 18,
+    temr: 18,
+    tspp: 18,
+    trby: 18
   },
   balances: {
     bnb: 0,
-    denaris: 0,
-    gold: 0,
-    zafir: 0,
-    esmerald: 0,
-    ruby: 0,
+    tden: 0,
+    tgld: 0,
+    temr: 0,
+    tspp: 0,
+    trby: 0,
   },
   hourlyPower: {
-    gold: 0,
-    zafir: 0,
-    esmerald: 0,
-    ruby: 0,
+    tgld: 0,
+    tspp: 0,
+    temr: 0,
+    trby: 0,
   },
   deposited: {},
   accumulated: {},
   army: {}
 }
 
+
+/* POPULATE INIT STATE FOR DEMO */
+
 landIds.forEach((id) => {
   initialState.deposited[id]=0;
   initialState.accumulated[id]=0;
 
-  if (id === "valley1" || id === "forrest1" || id === "field1") {
+  if (id === "Gold Farm" || id === "Sapphire Farm") {
     initialState.deposited[id]=10;
     initialState.accumulated[id]=120;
   }
@@ -77,6 +68,7 @@ heroeIds.forEach((id) => {
     initialState.army[id]=1;
   }
 });
+/* ---------------------------- */
 
 const reducer = (state, action) => {
   switch (action.type) {
