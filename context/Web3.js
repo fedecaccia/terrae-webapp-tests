@@ -39,7 +39,32 @@ const initialState = {
     trby: 0,
   },
   deposited: {},
-  accumulated: {},
+  accumulated: {
+    "Farm Gold": {
+      tgld: 0,
+      tspp: 0,
+      temr: 0,
+      trby: 0,
+    },
+    "Farm Emerald": {
+      tgld: 0,
+      tspp: 0,
+      temr: 0,
+      trby: 0,
+    },
+    "Farm Sapphire": {
+      tgld: 0,
+      tspp: 0,
+      temr: 0,
+      trby: 0,
+    },
+    "Farm Ruby": {
+      tgld: 0,
+      tspp: 0,
+      temr: 0,
+      trby: 0,
+    },
+  },
   army: {}
 }
 
@@ -79,15 +104,15 @@ const reducer = (state, action) => {
       return { ...state, deposited }
     case "UPDATE_YIELD": // farm, resources, rewards
       let hourlyPower = {
-        tgld: 0,
-        tspp: 0,
-        temr: 0,
-        trby: 0,
+        tgld: BigNumber(0),
+        tspp: BigNumber(0),
+        temr: BigNumber(0),
+        trby: BigNumber(0),
       }
       
       action.payload.farms.forEach((farm) => {
         for (let r=0; r<farm.resources.length; r++){
-          hourlyPower[farm.resources[r].toLowerCase()] += BigNumber(state.deposited[farm.id]).multipliedBy(farm.rewardsPerBlock[r]).multipliedBy(20*60).toString();
+          hourlyPower[farm.resources[r].toLowerCase()] = hourlyPower[farm.resources[r].toLowerCase()].plus(BigNumber(state.deposited[farm.id]).dividedBy(10**18).multipliedBy(farm.rewardsPerBlock[r]).multipliedBy(20*60));
         }
       });
 

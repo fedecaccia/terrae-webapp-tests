@@ -1,9 +1,17 @@
 import Image from "next/image";
 import TerraeButton from "./TerraeButton";
 import { useRef, useState } from "react";
+import { useWeb3, useDispatchWeb3 } from '../context/Web3';
+import { harvestAndStake } from "../web3/farm";
+import updateWeb3UserInfo from "../web3/balances";
+import { useToasts } from "react-toast-notifications";
 
 function LandShow({ result }) {
+  const userWeb3 = useWeb3();
+  const dispatch = useDispatchWeb3();
+
   const inputRef = useRef(null);
+  const { addToast } = useToasts();
   const [inputValue, setInputValue] = useState(1);
 
   return (
@@ -25,6 +33,8 @@ function LandShow({ result }) {
               {result.id}
             </p>
           </div>
+        </div>
+        <div className="flex flex-row justify-between items-center px-2">
           <div className="flex flex-row items-center justify-center">
             <Image
               className=""
@@ -64,7 +74,20 @@ function LandShow({ result }) {
           text="stake"
           enabled={inputValue>0 && true}
           extraClass="mx-2 mb-3 h-8"
-          onClick={()=>console.log("click!")}
+          onClick={async ()=>{
+            setInputValue(0);
+            try{
+              addToast("Processing... please wait", { appearance: "info", autoDismissTimeout: "30000" });
+              await harvestAndStake({ farmId: result.id, amount: inputValue, userAddress: userWeb3.address });
+              addToast(`Success stake!`, { appearance: "success" });
+              await updateWeb3UserInfo(dispatch);
+            } catch(err) {
+              console.log(err);
+              addToast(`Stake couldn't be completed`,{
+                appearance: "error"
+              });
+            }
+          }}
         />
 
 

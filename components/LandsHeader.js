@@ -7,7 +7,7 @@ function LandsHeader({ tabState, setTab }) {
   
   const userWeb3 = useWeb3();
 
-  const weiToEth = (amount) => (BigNumber(amount).dividedBy(10**18).toFixed(4));
+  const weiToEth = (amount) => (BigNumber(amount).dividedBy(10**18).toFixed(2));
 
   const getPower = (resource) => {
 

@@ -7,23 +7,23 @@ export default {
     "TRBY": "0xC05101497AE24241cE8494866F1e000b49921117"
   },
   "farms": {
-    "gold": {
-      address: "0xd639bf461eC0e60388a1A964c77d22a976cfe7d3",
+    "Farm Gold": {
+      address: "0x0Aa6086c95b9ef0991e2Baa31d926bc34afeBB1f",
       resources: ["tgld"],
       rewardsPerBlock: ["15000000000000000"]
     },
-    "emerald": {
-      address: "0xd95Eb8a6aaF02C40aE07E1a0A31458667DB05fe4",
+    "Farm Emerald": {
+      address: "0x5005697416468c52Bf00DEf2052a53Ef47044320",
       resources: ["temr"],
       rewardsPerBlock: ["15000000000000000"]
     },
-    "sapphire": {
-      address: "0x5883D5C00674Ec6F60027A0223637B5550B47F03",
+    "Farm Sapphire": {
+      address: "0x90789781ee9349b440fbb366f9Fc2cBb84446fFf",
       resources: ["tspp"],
       rewardsPerBlock: ["15000000000000000"]
     },
-    "ruby": {
-      address: "0xcE928068D1b2C2758e4bDa5735829eC040e68a59",
+    "Farm Ruby": {
+      address: "0x094092719A698de42F4B8A2aC7dF2ced0998498D",
       resources: ["trby"],
       rewardsPerBlock: ["15000000000000000"]
     }

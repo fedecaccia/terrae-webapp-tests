@@ -1,16 +1,27 @@
 import Image from "next/image";
 import TerraeButton from "./TerraeButton";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useWeb3 } from '../context/Web3';
+import BigNumber from 'bignumber.js';
+import { harvest, hasvestAndUnstake } from "../web3/farm";
+import updateWeb3UserInfo from "../web3/balances";
+import { useToasts } from "react-toast-notifications";
 
 function LandOwned({ result }) {
-  const inputRef = useRef(null);
-  const [inputValue, setInputValue] = useState(1);
   const userWeb3 = useWeb3();
+  const { addToast } = useToasts();
+  const [buttonsEnabled, setButtonsEnabled] = useState(true);
 
-  const deposited = userWeb3.deposited[result.id]
-  const totalYield =deposited*result.hourlyYield;
-  const accumulated = userWeb3.accumulated[result.id];
+  const weiToETH = wei => (wei/10**18)
+
+  const deposited = weiToETH(userWeb3.deposited[result.id])
+  const totalYield = BigNumber(deposited).multipliedBy(result.hourlyYield).toFixed(4);
+  const hourlyYield = BigNumber(result.hourlyYield).toFixed(4);
+  const accumulated = BigNumber(weiToETH(userWeb3.accumulated[result.id][result.resource.toLowerCase()])).toFixed(4);
+
+  // useEffect(() => {
+  //   setButtonsEnabled(true);
+  // }, []);
 
   return (
     <div className="flex justify-center mt-1">
@@ -43,13 +54,13 @@ function LandOwned({ result }) {
             <Image
               className=""
               objectFit="cover"
-              src={`/resources/${result.resource}.png`}
+              src={result.resourceImage}
               width={25}
               height={25}
               layout="fixed"
               alt=""
             />
-            <p className="pl-1 addressText text-gray-lightest">{result.hourlyYield*inputValue}/hr</p>   
+            <p className="pl-1 addressText text-gray-lightest">{hourlyYield}/hr</p>
           </div>
         </div>
 
@@ -83,7 +94,7 @@ function LandOwned({ result }) {
             <Image
               className=""
               objectFit="cover"
-              src={`/resources/${result.resource}.png`}
+              src={result.resourceImage}
               width={25}
               height={25}
               layout="fixed"
@@ -103,7 +114,7 @@ function LandOwned({ result }) {
             <Image
               className=""
               objectFit="cover"
-              src={`/resources/${result.resource}.png`}
+              src={result.resourceImage}
               width={25}
               height={25}
               layout="fixed"
@@ -116,17 +127,47 @@ function LandOwned({ result }) {
         <TerraeButton
           isPrimary
           text="Harvest"
-          enabled={inputValue>0 && true}
+          enabled={buttonsEnabled}
           extraClass="mx-2 h-8"
-          onClick={()=>console.log("click!")}
+          onClick={async ()=>{
+            setButtonsEnabled(false);
+            try{
+              addToast("Processing... please wait", { appearance: "info", autoDismissTimeout: "30000" });
+              await harvest({ farmId: result.id, userAddress: userWeb3.address });
+              addToast(`You have received new tokens!`, { appearance: "success" });
+              await updateWeb3UserInfo(dispatch);
+              setButtonsEnabled(true);
+            } catch(err) {
+              console.log(err);
+              addToast(`Harvest couldn't be completed`,{
+                appearance: "error"
+              });
+              setButtonsEnabled(true);
+            }
+          }}
         />
 
         <TerraeButton
           isPrimary={false}
           text="Unstake"
-          enabled={inputValue>0 && true}
+          enabled={buttonsEnabled}
           extraClass="mx-2 mb-3 h-8"
-          onClick={()=>console.log("click!")}
+          onClick={async ()=>{
+            setButtonsEnabled(false);
+            try{
+              addToast("Processing... please wait", { appearance: "info", autoDismissTimeout: "30000" });
+              await harvestAndUnstake({ farmId: result.id, userAddress: userWeb3.address, amount: accumulated });
+              addToast(`You have received new tokens!`, { appearance: "success" });
+              await updateWeb3UserInfo(dispatch);
+              setButtonsEnabled(true);
+            } catch(err) {
+              console.log(err);
+              addToast(`Harvest couldn't be completed`,{
+                appearance: "error"
+              });
+              setButtonsEnabled(true);
+            }
+          }}
         />
 
 

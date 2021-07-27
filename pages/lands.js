@@ -4,6 +4,7 @@ import Sidebar from "../components/Sidebar";
 import LandsHeader from "../components/LandsHeader";
 import PageDescription from "../components/PageDescription";
 import LandsLayout from "../components/LandsLayout";
+import BigNumber from "bignumber.js";
 
 
 const Lands = ({ results }) => {
@@ -34,36 +35,36 @@ export async function getServerSideProps(context) {
 
   const BLOCKS_PER_HOUR=20*60;
   const TOKEN_DECIMALS=18;
-  const weiToEth = amount => (amount/(10**TOKEN_DECIMALS));
-  const blockToHourlyYield = blockRate => (weiToEth(blockRate*BLOCKS_PER_HOUR))
+  const weiToEth = amount => (amount.dividedBy(10**TOKEN_DECIMALS));
+  const blockToHourlyYield = blockRate => (weiToEth(BigNumber(blockRate).multipliedBy(BLOCKS_PER_HOUR)).toFixed(6))
 
   const request = {
     results: [
       {
         id: "Farm Ruby",
         image: "/lands/valley.webp",
-        hourlyYield: blockToHourlyYield(4000),
+        hourlyYield: blockToHourlyYield("15000000000000000"),
         resource: "TRBY",
         resourceImage: "/resources/ruby.png"
       },
       {
         id: "Farm Gold",
         image: "/lands/forrest.webp",
-        hourlyYield: blockToHourlyYield(4000),
+        hourlyYield: blockToHourlyYield("15000000000000000"),
         resource: "TGLD",
         resourceImage: "/resources/gold.png"
       },
       {
         id: "Farm Emerald",
         image: "/lands/river.webp",
-        hourlyYield: blockToHourlyYield(4000),
+        hourlyYield: blockToHourlyYield("15000000000000000"),
         resource: "TEMR",
         resourceImage: "/resources/emerald.png"
       },
       {
         id: "Farm Sapphire",
         image: "/lands/field.webp",
-        hourlyYield: blockToHourlyYield(4000),
+        hourlyYield: blockToHourlyYield("15000000000000000"),
         resource: "TSPP",
         resourceImage: "/resources/sapphire.png"
       },
