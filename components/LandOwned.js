@@ -1,7 +1,7 @@
 import Image from "next/image";
 import TerraeButton from "./TerraeButton";
 import { useRef, useState, useEffect } from "react";
-import { useWeb3 } from '../context/Web3';
+import { useWeb3, useDispatchWeb3 } from '../context/Web3';
 import BigNumber from 'bignumber.js';
 import { harvest, hasvestAndUnstake } from "../web3/farm";
 import updateWeb3UserInfo from "../web3/balances";
@@ -9,15 +9,19 @@ import { useToasts } from "react-toast-notifications";
 
 function LandOwned({ result }) {
   const userWeb3 = useWeb3();
+  const dispatch = useDispatchWeb3();
+
   const { addToast } = useToasts();
-  const [buttonsEnabled, setButtonsEnabled] = useState(true);
+  
 
   const weiToETH = wei => (wei/10**18)
 
   const deposited = weiToETH(userWeb3.deposited[result.id])
-  const totalYield = BigNumber(deposited).multipliedBy(result.hourlyYield).toFixed(4);
-  const hourlyYield = BigNumber(result.hourlyYield).toFixed(4);
+  const totalYield = BigNumber(deposited).multipliedBy(result.hourlyYield).toString();//.toFixed(4);
+  const hourlyYield = BigNumber(result.hourlyYield).toString();//.toFixed(4);
   const accumulated = BigNumber(weiToETH(userWeb3.accumulated[result.id][result.resource.toLowerCase()])).toFixed(4);
+
+  const [buttonsEnabled, setButtonsEnabled] = useState(accumulated>0);
 
   // useEffect(() => {
   //   setButtonsEnabled(true);
@@ -136,13 +140,13 @@ function LandOwned({ result }) {
               await harvest({ farmId: result.id, userAddress: userWeb3.address });
               addToast(`You have received new tokens!`, { appearance: "success" });
               await updateWeb3UserInfo(dispatch);
-              setButtonsEnabled(true);
+              setButtonsEnabled(accumulated>0);
             } catch(err) {
               console.log(err);
               addToast(`Harvest couldn't be completed`,{
                 appearance: "error"
               });
-              setButtonsEnabled(true);
+              setButtonsEnabled(accumulated>0);
             }
           }}
         />
@@ -159,13 +163,13 @@ function LandOwned({ result }) {
               await harvestAndUnstake({ farmId: result.id, userAddress: userWeb3.address, amount: accumulated });
               addToast(`You have received new tokens!`, { appearance: "success" });
               await updateWeb3UserInfo(dispatch);
-              setButtonsEnabled(true);
+              setButtonsEnabled(deposited>0);
             } catch(err) {
               console.log(err);
               addToast(`Harvest couldn't be completed`,{
                 appearance: "error"
               });
-              setButtonsEnabled(true);
+              setButtonsEnabled(deposited>0);
             }
           }}
         />

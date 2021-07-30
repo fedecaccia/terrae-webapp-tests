@@ -81,8 +81,6 @@ export const harvestAndStake = async ({ farmId, amount, userAddress }) => {
     ethToWei(amount).toString()
   ).send(contractOptions);
 
-  console.log(res);
-
   // Second, harvest and stake!
 
   contractOptions = {
