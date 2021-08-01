@@ -1,11 +1,18 @@
 import Image from "next/image";
 import TerraeButton from "./TerraeButton";
 import { useState } from "react";
+import { useWeb3, useDispatchWeb3 } from '../context/Web3';
+import { train } from "../web3/army";
+import updateWeb3UserInfo from "../web3/balances";
+import { useToasts } from "react-toast-notifications";
 
 function ArmyShow({ result }) {
+  const userWeb3 = useWeb3();
+  const dispatch = useDispatchWeb3();
+
+  const { addToast } = useToasts();
 
   const getResourceImageFromSymbol = symbol => {
-    console.log(symbol)
     if (symbol.toLowerCase() === "tgld"){
       return "/resources/gold.png";
     }
@@ -43,7 +50,6 @@ function ArmyShow({ result }) {
 
         <div className="flex flex-row items-center justify-left px-2 gap-5">
           {result.cost.map(c => {
-            console.log(c.amount)
             return <div className="flex flex-row items-center justify-center">
               <Image
                 className=""
@@ -68,7 +74,19 @@ function ArmyShow({ result }) {
           text="Train"
           enabled
           extraClass="mx-2 mb-3 h-8"
-          onClick={()=>console.log("click!")}
+          onClick={async ()=>{
+            try{
+              addToast("Processing... please wait", { appearance: "info", autoDismissTimeout: "30000" });
+              await train({ unitId: result.id, userAddress: userWeb3.address });
+              addToast(`Unit trained!`, { appearance: "success" });
+              await updateWeb3UserInfo(dispatch);
+            } catch(err) {
+              console.log(err);
+              addToast(`Train couldn't be completed`,{
+                appearance: "error"
+              });
+            }
+          }}
         />
 
       </div>

@@ -28,6 +28,28 @@ export default {
       rewardsPerBlock: ["15000000000000000"]
     }
   },
+  "army": {
+    "meises": {
+      address: "",
+      resources: ["trby", "tspp"],
+      cost: ["35000000000000000000", "50000000000000000000"]
+    },
+    "pilos": {
+      address: "",
+      resources: ["tgld", "tspp"],
+      cost: ["35000000000000000000", "50000000000000000000"]
+    },
+    "adenai": {
+      address: "",
+      resources: ["tgld", "temr"],
+      cost: ["35000000000000000000", "50000000000000000000"]
+    },
+    "aman": {
+      address: "",
+      resources: ["trby", "temr"],
+      cost: ["35000000000000000000", "50000000000000000000"]
+    },
+  },
   "wrapped": {
     "WBNB": "0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd"
   },

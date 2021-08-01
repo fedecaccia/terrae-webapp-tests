@@ -6,7 +6,7 @@ function ArmyOwned({ result }) {
 
   return (
     <div className="flex justify-center mt-1">
-      <div className="flex flex-col gap-y-3 bg-gray-dark rounded-xl cursor-pointer transition transform hover:-translate-y-1">
+      <div className="flex flex-col gap-y-3 bg-gray-dark rounded-xl cursor-pointer transition transform hover:-translate-y-1 pb-3">
         <Image
           className="rounded-xl"
           objectFit="cover"
@@ -23,36 +23,23 @@ function ArmyOwned({ result }) {
               {result.id}
             </p>
           </div>
-          <div className="flex flex-row items-center justify-center">
-            {result.cost.map(c => {
-              return <div>
-                <Image
-                className=""
-                objectFit="cover"
-                src={`/resources/${result.resource}.png`}
-                width={25}
-                height={25}
-                layout="fixed"
-                alt=""
-              />
-              <p className="pl-1 addressText text-gray-lightest">{c.amount}</p>
-              </div>
-            })}
-            
-          </div>
         </div>
 
         <div className="flex flex-row justify-between items-center px-2 mediumText text-gray-lightest ">
           <p className="addressText text-gray-lightest">Power: {result.power} - Health: {result.health}</p>
         </div>
 
-        <TerraeButton
+        <div className="flex flex-row justify-between items-center px-2 mediumText text-gray-lightest ">
+          <p className="addressText text-gray-lightest">Matches: 12 - Won:11</p>
+        </div>
+
+        {/* <TerraeButton
           isPrimary
           text="Sell"
           enabled
           extraClass="mx-2 mb-3 h-8"
           onClick={()=>console.log("click!")}
-        />
+        /> */}
 
 
       </div>
