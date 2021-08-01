@@ -24,7 +24,7 @@ function ArmyOwned({ result }) {
             </p>
           </div>
           <div className="flex flex-row items-center justify-center">
-            {result.cost.forEach(c => {
+            {result.cost.map(c => {
               return <div>
                 <Image
                 className=""

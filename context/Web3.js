@@ -93,12 +93,9 @@ const reducer = (state, action) => {
     case "UPDATE_DENARIS_PRICE":
       return { ...state, denarisPrice: action.payload }
     case "UPDATE_REWARD":
-      console.log(action.payload)
-      console.log(action.payload.reward)
       let accumulated = state.accumulated;
       if (!accumulated[action.payload.farm]) accumulated[action.payload.farm] = {};
       accumulated[action.payload.farm][action.payload.reward[0].toLowerCase()] = action.payload.reward[1];
-      console.log(accumulated)
       return { ...state, accumulated }
     case "UPDATE_STAKE":
       let deposited = state.deposited;

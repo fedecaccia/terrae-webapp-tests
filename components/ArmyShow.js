@@ -4,6 +4,22 @@ import { useState } from "react";
 
 function ArmyShow({ result }) {
 
+  const getResourceImageFromSymbol = symbol => {
+    console.log(symbol)
+    if (symbol.toLowerCase() === "tgld"){
+      return "/resources/gold.png";
+    }
+    if (symbol.toLowerCase() === "temr"){
+      return "/resources/emerald.png";
+    }
+    if (symbol.toLowerCase() === "trby"){
+      return "/resources/ruby.png";
+    }
+    if (symbol.toLowerCase() === "tspp"){
+      return "/resources/sapphire.png";
+    }
+  }
+
   return (
     <div className="flex justify-center mt-1">
       <div className="flex flex-col gap-y-3 bg-gray-dark rounded-xl cursor-pointer transition transform hover:-translate-y-1">
@@ -23,23 +39,24 @@ function ArmyShow({ result }) {
               {result.id}
             </p>
           </div>
-          <div className="flex flex-row items-center justify-center">
-            {result.cost.forEach(c => {
-              return <div>
-                <Image
+        </div>
+
+        <div className="flex flex-row items-center justify-left px-2 gap-5">
+          {result.cost.map(c => {
+            console.log(c.amount)
+            return <div className="flex flex-row items-center justify-center">
+              <Image
                 className=""
                 objectFit="cover"
-                src={`/resources/${result.resource}.png`}
+                src={getResourceImageFromSymbol(c.resource)}
                 width={25}
                 height={25}
                 layout="fixed"
                 alt=""
               />
               <p className="pl-1 addressText text-gray-lightest">{c.amount}</p>
-              </div>
+            </div>
             })}
-            
-          </div>
         </div>
 
         <div className="flex flex-row justify-between items-center px-2 mediumText text-gray-lightest ">

@@ -61,7 +61,6 @@ const updateWeb3UserInfo = async ( dispatch ) => {
       let inst = new eth.Contract(farmAbi, contracts.farms[farm].address)
       for (let i=0; i<contracts.farms[farm].resources.length; i++){
         let reward = await inst.methods.getAddressReward(i, addresses[0]).call();
-        console.log(reward)
         if (reward[1]>0) handleReward(dispatch, farm, reward);
 
         let stake = await inst.methods.getAddressStake(addresses[0]).call();
