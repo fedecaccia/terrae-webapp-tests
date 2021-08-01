@@ -3,7 +3,7 @@ import TerraeButton from "./TerraeButton";
 import { useRef, useState, useEffect } from "react";
 import { useWeb3, useDispatchWeb3 } from '../context/Web3';
 import BigNumber from 'bignumber.js';
-import { harvest, hasvestAndUnstake } from "../web3/farm";
+import { harvest, harvestAndUnstake } from "../web3/farm";
 import updateWeb3UserInfo from "../web3/balances";
 import { useToasts } from "react-toast-notifications";
 
@@ -160,7 +160,7 @@ function LandOwned({ result }) {
             setButtonsEnabled(false);
             try{
               addToast("Processing... please wait", { appearance: "info", autoDismissTimeout: "30000" });
-              await harvestAndUnstake({ farmId: result.id, userAddress: userWeb3.address, amount: accumulated });
+              await harvestAndUnstake({ farmId: result.id, userAddress: userWeb3.address, amount: deposited });
               addToast(`You have received new tokens!`, { appearance: "success" });
               await updateWeb3UserInfo(dispatch);
               setButtonsEnabled(deposited>0);
