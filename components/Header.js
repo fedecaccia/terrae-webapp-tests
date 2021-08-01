@@ -5,6 +5,7 @@ import {
   MenuIcon
 } from "@heroicons/react/solid";
 import AddressHeader from "./AddressHeader";
+import BalanceHeader from "./BalanceHeader";
 import { useSidebar, useDispatchSidebar } from '../context/Sidebar';
 
 const Header = () => {
@@ -49,6 +50,7 @@ const Header = () => {
 
       {/* Right */}
       <div className="flex items-center sm:space-x-2 justify-end">        
+        <BalanceHeader />
         <AddressHeader />
         <Image
           onClick={dummyFunction}
